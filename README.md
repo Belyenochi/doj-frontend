@@ -4,7 +4,7 @@
 
 An open-source Online Judge System designed for ZUCC ACM/ICPC Lab.
 
-The old repository [*fateud.com*](https://github.com/ChouUn/fateud.com) is deprecated.
+Post Scriptum: The old repository [*fateud.com*](https://github.com/ChouUn/fateud.com) is deprecated.
 
 ## Prerequisites
 
@@ -13,7 +13,6 @@ The old repository [*fateud.com*](https://github.com/ChouUn/fateud.com) is depre
   * jQuery, Babel, Underscore
   * ACE (Ajax.org Cloud9 Editor), Markdown Plus
 * backend
-  * nginx
   * Node.js
   * MySQL
 * judger
@@ -22,6 +21,10 @@ The old repository [*fateud.com*](https://github.com/ChouUn/fateud.com) is depre
 
 ## Requirements
 
+```
+react react-dom material-ui
+jquery underscore
+mysql
 ```
 
 ## Installation
@@ -34,10 +37,8 @@ The old repository [*fateud.com*](https://github.com/ChouUn/fateud.com) is depre
 
 2. create database
 
-  `$ mysql -u root -p`
-
-  `mysql> create database fateud;`
-
+  `$ mysql -u root -p`  
+  `mysql> create database fateud;`  
   `mysql> quit`
 
 ### Node.js
@@ -48,7 +49,12 @@ The old repository [*fateud.com*](https://github.com/ChouUn/fateud.com) is depre
 
 2. install package
 
-  `$ npm install react `
+  `$ npm install`
+  `$ sudo npm install -g webpack`
+
+3. start
+
+  `$ npm start`
   <!-- `$ sudo npm install -g bower` -->
 
   <!-- `$ sudo npm install -g grunt` -->

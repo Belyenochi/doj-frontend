@@ -30,6 +30,7 @@ build/Release
 # Dependency directories
 node_modules
 jspm_packages
+bower_components
 
 # Optional npm cache directory
 .npm
@@ -40,3 +41,5 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
+# Compiled files
+public/core

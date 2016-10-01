@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // dependencies
-var app = module.exports = require('../app')
+var app = module.exports = require('./app')
   , debug = require('debug')('acm.zucc.edu.cn:server')
   , http = require('http');
 

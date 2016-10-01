@@ -1,7 +1,5 @@
 # acm.zucc.edu.cn
 
-## Project
-
 An open-source Online Judge System designed for ZUCC ACM/ICPC Lab.
 
 Post Scriptum: The old repository [*fateud.com*](https://github.com/ChouUn/fateud.com) is deprecated.
@@ -18,14 +16,6 @@ Post Scriptum: The old repository [*fateud.com*](https://github.com/ChouUn/fateu
 * judger
   * Linux
   * Docker
-
-## Requirements
-
-```
-react react-dom material-ui
-jquery underscore
-mysql
-```
 
 ## Installation
 
@@ -49,8 +39,10 @@ mysql
 
 2. install package
 
-  `$ npm install`
-  `$ sudo npm install -g webpack`
+  if Develop  
+  `$ sudo npm install`  
+  or Release  
+  `$ sudo npm install --production`
 
 3. start
 

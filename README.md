@@ -7,8 +7,8 @@ Post Scriptum: The old repository [*fateud.com*](https://github.com/ChouUn/fateu
 ## Prerequisites
 
 * frontend
-  * React, Material-UI
-  * jQuery, Babel, Underscore
+  * Babel, jQuery, Underscore
+  * React, Material-UI, alt
   * ACE (Ajax.org Cloud9 Editor), Markdown Plus
 * backend
   * Node.js
@@ -46,7 +46,7 @@ Post Scriptum: The old repository [*fateud.com*](https://github.com/ChouUn/fateu
 
 3. start
 
-  `$ npm start`
-  <!-- `$ sudo npm install -g bower` -->
-
-  <!-- `$ sudo npm install -g grunt` -->
+  if Develop  
+  `$ sudo npm watch`  
+  or Release  
+  `$ sudo npm build && sudo npm start`

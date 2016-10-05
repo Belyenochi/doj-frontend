@@ -21,14 +21,14 @@ gulp.task('release', ['clean', 'build']);
 gulp.task('develop', ['clean', 'build', 'watch']);
 
 function init() {
-  webpack(require('./config/webpack.init.config'), function(err, stats) {
+  webpack(require('./conf/webpack.init.config'), function(err, stats) {
     console.log(stats.toString());
     pack();
   });
 }
 
 function pack() {
-  webpack(require('./config/webpack.pack.config'), function(err, stats) {
+  webpack(require('./conf/webpack.pack.config'), function(err, stats) {
     console.log(stats.toString());
   });
 }

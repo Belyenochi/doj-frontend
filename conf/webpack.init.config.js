@@ -13,7 +13,7 @@ module.exports = {
     material: ['material-ui'],
   },
   output: {
-    path: path.join(__dirname, 'public/core/'),
+    path: path.join(__dirname, '../public/core/'),
     filename: '[name].dll.js',
     library: '[name]_library',
   },
@@ -34,7 +34,7 @@ module.exports = {
       filename: "common.dll.js",
     }),
     new webpack.DllPlugin({
-      path: path.join(__dirname, 'public/core/', '[name]-manifest.json'),
+      path: path.join(__dirname, '../public/core/', '[name]-manifest.json'),
       name: '[name]_library',
     }),
     // new webpack.optimize.UglifyJsPlugin({

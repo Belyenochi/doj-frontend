@@ -8,10 +8,10 @@ module.exports = {
   cache: true,
   devtool: 'cheap-source-map',
   entry: {
-    main: path.join(__dirname, 'app/main.js'),
+    main: path.join(__dirname, '../app/main.js'),
   },
   output: {
-    path: path.join(__dirname, 'public/core/'),
+    path: path.join(__dirname, '../public/core/'),
     filename: '[name].js',
   },
   module: {
@@ -34,15 +34,15 @@ module.exports = {
   plugins: [
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require('./public/core/base-manifest.json'),
+      manifest: require('../public/core/base-manifest.json'),
     }),
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require('./public/core/react-manifest.json'),
+      manifest: require('../public/core/react-manifest.json'),
     }),
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require('./public/core/material-manifest.json'),
+      manifest: require('../public/core/material-manifest.json'),
     }),
     // new webpack.optimize.UglifyJsPlugin({
     //   compress: { warnings: false },

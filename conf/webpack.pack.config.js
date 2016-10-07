@@ -6,9 +6,9 @@ var path = require('path')
 
 module.exports = {
   cache: true,
-  devtool: 'cheap-source-map',
+  // devtool: 'cheap-source-map',
   entry: {
-    main: path.join(__dirname, '../app/main.js'),
+    main: path.join(__dirname, '../app/app.js'),
   },
   output: {
     path: path.join(__dirname, '../public/core/'),
@@ -32,20 +32,24 @@ module.exports = {
     }],
   },
   plugins: [
+  // new webpack.optimize.UglifyJsPlugin({
+  //   compress: { warnings: false },
+  // }),
     new webpack.DllReferencePlugin({
-      context: __dirname,
-      manifest: require('../public/core/base-manifest.json'),
+      context: path.join(__dirname, '../'),
+      manifest: require('../public/core/lib_00_common_manifest.json'),
     }),
     new webpack.DllReferencePlugin({
-      context: __dirname,
-      manifest: require('../public/core/react-manifest.json'),
+      context: path.join(__dirname, '../'),
+      manifest: require('../public/core/lib_01_base_manifest.json'),
     }),
     new webpack.DllReferencePlugin({
-      context: __dirname,
-      manifest: require('../public/core/material-manifest.json'),
+      context: path.join(__dirname, '../'),
+      manifest: require('../public/core/lib_02_react_manifest.json'),
     }),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: { warnings: false },
-    // }),
+    new webpack.DllReferencePlugin({
+      context: path.join(__dirname, '../'),
+      manifest: require('../public/core/lib_03_material_manifest.json'),
+    }),
   ]
 };

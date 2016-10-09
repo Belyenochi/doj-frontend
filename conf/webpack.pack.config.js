@@ -15,21 +15,25 @@ module.exports = {
     filename: '[name].js',
   },
   module: {
-    loaders: [{
-      test: /\.js(x)?$/,
-      loader: 'babel',
-      exclude: /node_modules/,
-      query: {
-        presets: ['es2015', 'react'],
-        cacheDirectory: true,
-      }
-    }, {
-      test: /\.css$/,
-      loader: 'style!css'
-    }, {
-      test: /\.less$/,
-      loader: 'style!css!less'
-    }],
+    loaders: [
+      {
+        test: /\.js(x)?$/,
+        loader: 'babel',
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015', 'react'],
+          cacheDirectory: true,
+        }
+      },
+      // {
+      //   test: /\.css$/,
+      //   loader: 'style!css'
+      // },
+      // {
+      //   test: /\.less$/,
+      //   loader: 'style!css!less'
+      // }
+    ],
   },
   plugins: [
   // new webpack.optimize.UglifyJsPlugin({

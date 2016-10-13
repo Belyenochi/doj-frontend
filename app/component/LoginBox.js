@@ -39,7 +39,7 @@ class LoginBox extends Component {
         actions={actions}
         autoScrollBodyContent={true}
         contentStyle={{
-          width: '320px',
+          width: '360px',
           maxWidth: '100%',
         }}
         {...this.props}

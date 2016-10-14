@@ -8,7 +8,7 @@ module.exports = {
   cache: true,
   // devtool: 'cheap-source-map',
   entry: {
-    'lib_01_base': ['jquery', 'underscore', 'keycode'],
+    'lib_01_base': ['jquery', 'underscore', 'keycode', 'history'],
     'lib_02_react': ['react', 'react-dom', 'react-router', 'react-title-component'],
     'lib_03_material': ['react-tap-event-plugin', 'material-ui'],
   },

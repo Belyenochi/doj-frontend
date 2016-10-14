@@ -8,9 +8,6 @@ class LoginButton extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.handleClose = this.handleClose.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
-
     this.state = {
       bOpen: false,
     };
@@ -34,11 +31,11 @@ class LoginButton extends Component {
         <LoginBox
           ref="loginBox"
           open={this.state.bOpen}
-          onRequestClose={this.handleClose}
+          onRequestClose={this.handleClose.bind(this)}
         />
         <RaisedButton
           label="Login"
-          onTouchTap={this.handleOpen}
+          onTouchTap={this.handleOpen.bind(this)}
         />
       </div>
     );

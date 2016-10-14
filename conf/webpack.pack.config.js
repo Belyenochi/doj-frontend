@@ -6,46 +6,54 @@ var path = require('path')
 
 module.exports = {
   cache: true,
-  devtool: 'cheap-source-map',
+  // devtool: 'cheap-source-map',
   entry: {
-    main: path.join(__dirname, 'app/main.js'),
+    main: path.join(__dirname, '../app/app.js'),
   },
   output: {
-    path: path.join(__dirname, 'public/core/'),
+    path: path.join(__dirname, '../public/core/'),
     filename: '[name].js',
   },
   module: {
-    loaders: [{
-      test: /\.js(x)?$/,
-      loader: 'babel',
-      exclude: /node_modules/,
-      query: {
-        presets: ['es2015', 'react'],
-        cacheDirectory: true,
-      }
-    }, {
-      test: /\.css$/,
-      loader: 'style!css'
-    }, {
-      test: /\.less$/,
-      loader: 'style!css!less'
-    }],
+    loaders: [
+      {
+        test: /\.js(x)?$/,
+        loader: 'babel',
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015', 'react'],
+          cacheDirectory: true,
+        }
+      },
+      // {
+      //   test: /\.css$/,
+      //   loader: 'style!css'
+      // },
+      // {
+      //   test: /\.less$/,
+      //   loader: 'style!css!less'
+      // }
+    ],
   },
   plugins: [
+  // new webpack.optimize.UglifyJsPlugin({
+  //   compress: { warnings: false },
+  // }),
     new webpack.DllReferencePlugin({
-      context: __dirname,
-      manifest: require('./public/core/base-manifest.json'),
+      context: path.join(__dirname, '../'),
+      manifest: require('../public/core/lib_00_common_manifest.json'),
     }),
     new webpack.DllReferencePlugin({
-      context: __dirname,
-      manifest: require('./public/core/react-manifest.json'),
+      context: path.join(__dirname, '../'),
+      manifest: require('../public/core/lib_01_base_manifest.json'),
     }),
     new webpack.DllReferencePlugin({
-      context: __dirname,
-      manifest: require('./public/core/material-manifest.json'),
+      context: path.join(__dirname, '../'),
+      manifest: require('../public/core/lib_02_react_manifest.json'),
     }),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: { warnings: false },
-    // }),
+    new webpack.DllReferencePlugin({
+      context: path.join(__dirname, '../'),
+      manifest: require('../public/core/lib_03_material_manifest.json'),
+    }),
   ]
 };

@@ -41,8 +41,10 @@ app.use(session({
   secret: 'some secret here',
 }));
 
-app.use('/', require('../router/core'));
-app.use('/profile', require('../router/profile'));
+// route by React
+app.get('*', function(req, res) {
+  res.render('index', {});
+});
 
 // how do I setup an error handler?
 app.use(function(err, req, res, next) {

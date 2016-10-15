@@ -18,15 +18,17 @@ module.exports = {
     library: '[name]_library',
   },
   module: {
-    loaders: [{
-      test: /\.js(x)?$/,
-      loader: 'babel',
-      exclude: /node_modules/,
-      query: {
-        presets: ['es2015', 'react'],
-        cacheDirectory: true,
-      }
-    }],
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        loader: 'babel',
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015', 'stage-0', 'react'],
+          cacheDirectory: true,
+        }
+      },
+    ],
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({

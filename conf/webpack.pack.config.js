@@ -41,10 +41,6 @@ module.exports = {
   // }),
     new webpack.DllReferencePlugin({
       context: path.join(__dirname, '../'),
-      manifest: require('../public/core/lib_00_common_manifest.json'),
-    }),
-    new webpack.DllReferencePlugin({
-      context: path.join(__dirname, '../'),
       manifest: require('../public/core/lib_01_base_manifest.json'),
     }),
     new webpack.DllReferencePlugin({

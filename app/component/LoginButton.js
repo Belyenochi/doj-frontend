@@ -5,21 +5,17 @@ import RaisedButton from 'material-ui/RaisedButton';
 import LoginBox from './LoginBox';
 
 class LoginButton extends Component {
-  constructor(props, context) {
-    super(props, context);
+  state = {
+    bOpen: false,
+  };
 
-    this.state = {
-      bOpen: false,
-    };
-  }
-
-  handleOpen() {
+  handleOpen = () => {
     this.setState({
       bOpen: true,
     });
   }
 
-  handleClose() {
+  handleClose = () => {
     this.setState({
       bOpen: false,
     });
@@ -31,11 +27,11 @@ class LoginButton extends Component {
         <LoginBox
           ref="loginBox"
           open={this.state.bOpen}
-          onRequestClose={this.handleClose.bind(this)}
+          onRequestClose={this.handleClose}
         />
         <RaisedButton
           label="Login"
-          onTouchTap={this.handleOpen.bind(this)}
+          onTouchTap={this.handleOpen}
         />
       </div>
     );

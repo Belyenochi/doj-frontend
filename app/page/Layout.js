@@ -9,6 +9,24 @@ import withWidth, { LARGE } from 'material-ui/utils/withWidth';
 
 import Sidebar from '../component/Sidebar';
 
+const styles = {
+  appBar: {
+    position: 'fixed',
+    top: 0,
+  },
+  sidebar: {
+  },
+  content: {
+    paddingTop: spacing.desktopKeylineIncrement,
+    minHeight: 400,
+    margin: spacing.desktopGutter,
+  },
+  footer: {
+    backgroundColor: grey900,
+    textAlign: 'center',
+  },
+};
+
 class Layout extends Component {
   state = {
     open: false,
@@ -26,23 +44,8 @@ class Layout extends Component {
     });
   }
 
-  getStyle() {
-    let style = {
-      appBar: {
-        position: 'fixed',
-        top: 0,
-      },
-      content: {
-        paddingTop: spacing.desktopKeylineIncrement,
-        minHeight: 400,
-        margin: spacing.desktopGutter,
-      },
-      footer: {
-        backgroundColor: grey900,
-        textAlign: 'center',
-      },
-    };
-    return style;
+  getStyles() {
+    return styles;
   }
 
   render() {
@@ -50,32 +53,33 @@ class Layout extends Component {
     let { open } = this.state;
     let docked = false;
     let showMenuIconButton = true;
-    let style = this.getStyle();
+    let styles = this.getStyles();
 
     if (width === LARGE) {
       docked = true;
       open = true;
       showMenuIconButton = false;
 
-      style.content.paddingLeft = 256;
-      style.footer.paddingLeft = 256;
+      styles.content.paddingLeft = 256;
+      styles.footer.paddingLeft = 256;
     }
 
     return (
       <div>
         <Title render="Diverse Online Judge" />
         <AppBar
-          style={style.appBar}
+          style={styles.appBar}
           showMenuIconButton={showMenuIconButton}
           onLeftIconButtonTouchTap={this.handleLeftIconButtonTouchTap}
         />
         <Sidebar
+          style={styles.Sidebar}
           open={open}
           docked={docked}
           onRequestChange={this.handleRequestChange}
         />
         <div
-          style={style.content}
+          style={styles.content}
         >
           {children}
         </div>

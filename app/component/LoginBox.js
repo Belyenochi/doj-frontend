@@ -7,14 +7,8 @@ import TextField from 'material-ui/TextField';
 import keycode from 'keycode';
 
 class LoginBox extends Component {
-  constructor(props, context) {
-    super(props, context);
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit() {
-
+  handleSubmit = () => {
     this.props.onRequestClose();
   }
 

@@ -9,7 +9,7 @@ class Home extends Component {
     return (
       <div>
         <Title render={(prev) => `Home - ${prev}`} />
-        Hello from Home Component
+        Hello from Home Component, this is content.
         <LoginButton />
       </div>
     );

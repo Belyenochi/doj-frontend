@@ -7,13 +7,13 @@ import { cyan500 } from 'material-ui/styles/colors';
 
 const styles = {
   logo: {
-    fontSize: 24,
+    fontSize: 36,
     color: typography.textFullWhite,
     lineHeight: `${spacing.desktopKeylineIncrement}px`,
     fontWeight: typography.fontWeightLight,
     backgroundColor: cyan500,
-    paddingLeft: spacing.desktopGutter,
     marginBottom: 8,
+    textAlign: 'center',
   },
 };
 
@@ -37,7 +37,7 @@ class AppNav extends Component {
           style={styles.logo}
           // onTouchTap={this.handleTouchTapHeader}
         >
-          Material-UI
+          DOJ
         </div>
       </Drawer>
     );

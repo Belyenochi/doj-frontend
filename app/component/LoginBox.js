@@ -27,16 +27,22 @@ class LoginBox extends Component {
       />,
     ];
 
+    const {
+      open,
+      onRequestClose
+    } = this.props;
+
     return (
       <Dialog
         title="Login"
         actions={actions}
         autoScrollBodyContent={true}
+        open={open}
+        onRequestClose={onRequestClose}
         contentStyle={{
           width: '360px',
           maxWidth: '100%',
         }}
-        {...this.props}
       >
         <TextField
           ref="username"

@@ -60,8 +60,8 @@ class Layout extends Component {
       open = true;
       showMenuIconButton = false;
 
-      styles.content.paddingLeft = 256;
-      styles.footer.paddingLeft = 256;
+      styles.content = Object.assign({}, styles.content, { paddingLeft: 256 });
+      styles.footer = Object.assign({}, styles.footer, { paddingLeft: 256 });
     }
 
     return (

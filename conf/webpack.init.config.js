@@ -6,11 +6,11 @@ var path = require('path')
 
 module.exports = {
   cache: true,
-  // devtool: 'cheap-source-map',
+  devtool: 'cheap-source-map',
   entry: {
-    'lib_01_base': ['jquery', 'underscore', 'keycode', 'history'],
-    'lib_02_react': ['react', 'react-dom', 'react-router', 'react-title-component'],
-    'lib_03_material': ['react-tap-event-plugin', 'material-ui'],
+    'lib_01_stable': ['react', 'react-dom', 'react-router', 'material-ui'],
+    'lib_02_utility': ['react-title-component', 'keycode', 'history'],
+    'lib_03_others': ['react-tap-event-plugin'],
   },
   output: {
     path: path.join(__dirname, '../public/core/'),

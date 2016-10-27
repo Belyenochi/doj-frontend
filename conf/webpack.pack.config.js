@@ -41,15 +41,15 @@ module.exports = {
   // }),
     new webpack.DllReferencePlugin({
       context: path.join(__dirname, '../'),
-      manifest: require('../public/core/lib_01_base_manifest.json'),
+      manifest: require('../public/core/lib_01_stable_manifest.json'),
     }),
     new webpack.DllReferencePlugin({
       context: path.join(__dirname, '../'),
-      manifest: require('../public/core/lib_02_react_manifest.json'),
+      manifest: require('../public/core/lib_02_utility_manifest.json'),
     }),
     new webpack.DllReferencePlugin({
       context: path.join(__dirname, '../'),
-      manifest: require('../public/core/lib_03_material_manifest.json'),
+      manifest: require('../public/core/lib_03_others_manifest.json'),
     }),
   ]
 };

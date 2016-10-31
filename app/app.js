@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { Router, browserHistory } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -18,11 +17,7 @@ injectTapEventPlugin();
 // For more details see: https://facebook.github.io/react/docs/top-level-api.html#react.render
 render(
   <MuiThemeProvider>
-    <Router
-      history={browserHistory}
-      onUpdate={() => window.scrollTo(0, 0)}
-      routes={AppRoute}
-    />
+    {AppRoute}
   </MuiThemeProvider>,
   document.getElementById('app')
 );

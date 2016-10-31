@@ -8,7 +8,7 @@ module.exports = {
   cache: true,
   // devtool: 'cheap-source-map',
   entry: {
-    main: path.join(__dirname, '../app/app.js'),
+    main: path.join(__dirname, '../app/App.js'),
   },
   output: {
     path: path.join(__dirname, '../public/core/'),
@@ -25,31 +25,23 @@ module.exports = {
           cacheDirectory: true,
         }
       },
-      // {
-      //   test: /\.css$/,
-      //   loader: 'style!css'
-      // },
-      // {
-      //   test: /\.less$/,
-      //   loader: 'style!css!less'
-      // }
     ],
   },
   plugins: [
-  // new webpack.optimize.UglifyJsPlugin({
-  //   compress: { warnings: false },
-  // }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: { warnings: false },
+    // }),
     new webpack.DllReferencePlugin({
       context: path.join(__dirname, '../'),
-      manifest: require('../public/core/lib_01_stable_manifest.json'),
+      manifest: require('../public/core/react_manifest.json'),
     }),
     new webpack.DllReferencePlugin({
       context: path.join(__dirname, '../'),
-      manifest: require('../public/core/lib_02_utility_manifest.json'),
+      manifest: require('../public/core/material_manifest.json'),
     }),
     new webpack.DllReferencePlugin({
       context: path.join(__dirname, '../'),
-      manifest: require('../public/core/lib_03_others_manifest.json'),
+      manifest: require('../public/core/others_manifest.json'),
     }),
   ]
 };

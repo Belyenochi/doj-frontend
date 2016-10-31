@@ -6,7 +6,7 @@ var path = require('path')
 
 module.exports = {
   cache: true,
-  // devtool: 'cheap-source-map',
+  devtool: 'cheap-source-map',
   entry: {
     main: path.join(__dirname, '../app/App.js'),
   },
@@ -32,16 +32,20 @@ module.exports = {
     //   compress: { warnings: false },
     // }),
     new webpack.DllReferencePlugin({
-      context: path.join(__dirname, '../'),
-      manifest: require('../public/core/react_manifest.json'),
+      context: path.join(__dirname, '..'),
+      manifest: require('../public/core/lib_01_bootstrap_manifest.json'),
     }),
     new webpack.DllReferencePlugin({
-      context: path.join(__dirname, '../'),
-      manifest: require('../public/core/material_manifest.json'),
+      context: path.join(__dirname, '..'),
+      manifest: require('../public/core/lib_02_react_manifest.json'),
     }),
     new webpack.DllReferencePlugin({
-      context: path.join(__dirname, '../'),
-      manifest: require('../public/core/others_manifest.json'),
+      context: path.join(__dirname, '..'),
+      manifest: require('../public/core/lib_03_material_manifest.json'),
+    }),
+    new webpack.DllReferencePlugin({
+      context: path.join(__dirname, '..'),
+      manifest: require('../public/core/lib_04_others_manifest.json'),
     }),
   ]
 };

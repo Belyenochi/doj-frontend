@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { render } from "react-dom";
+import { render } from 'react-dom';
 
 import Drawer from 'material-ui/Drawer';
 import { spacing, typography } from 'material-ui/styles';
 import { cyan500 } from 'material-ui/styles/colors';
+
+import LoginButton from '../component/LoginButton';
 
 const styles = {
   logo: {
@@ -39,6 +41,7 @@ class AppNav extends Component {
         >
           DOJ
         </div>
+        <LoginButton />
       </Drawer>
     );
   }

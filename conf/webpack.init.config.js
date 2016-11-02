@@ -10,8 +10,9 @@ module.exports = {
   entry: {
     'lib_01_bootstrap': ['jquery', 'bootstrap'],
     'lib_02_react': ['react', 'react-dom', 'react-router'],
-    'lib_03_material': ['material-ui', 'react-tap-event-plugin'],
-    'lib_04_others': ['react-title-component', 'keycode', 'history'],
+    'lib_03_redux': ['redux', 'react-redux'],
+    'lib_04_material': ['material-ui', 'react-tap-event-plugin'],
+    'lib_05_others': ['react-title-component', 'keycode', 'history'],
   },
   output: {
     path: path.join(__dirname, '../public/core/'),

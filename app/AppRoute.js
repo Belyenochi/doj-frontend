@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-import Layout from './page/Layout';
-import Home from './page/Home';
-import ProblemList from './page/ProblemList';
+import Layout from './Page/Layout';
+import Home from './Page/Home';
+import ProblemList from './Page/ProblemList';
 
 /**
  * Routes: https://github.com/reactjs/react-router/blob/master/docs/API.md#route

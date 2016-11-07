@@ -30,11 +30,11 @@ const resolve = (action) => {
   }
 }
 
-const Sidebar = (state = {}, action) => {
+const sidebar = (state = {}, action) => {
   return {
     ...state,
     ...resolve(action),
   };
 };
 
-export default Sidebar;
+export default sidebar;

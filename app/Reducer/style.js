@@ -1,5 +1,5 @@
 
-const Style = (state = {}, action) => {
+const style = (state = {}, action) => {
   let newState = Object.assign({}, state);
   switch (action.type) {
     case 'INIT_STYLE':
@@ -13,4 +13,4 @@ const Style = (state = {}, action) => {
   }
 };
 
-export default Style;
+export default style;

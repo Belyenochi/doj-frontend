@@ -3,9 +3,9 @@ import { render } from 'react-dom'
 
 import Drawer from 'material-ui/Drawer';
 
-class Header extends Component {
+class Sidebar extends Component {
   render() {
-    const { open, docked, style } = this.props;
+    const { open, docked } = this.props;
     return (
       <Drawer
         open={open}
@@ -17,4 +17,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default Sidebar;

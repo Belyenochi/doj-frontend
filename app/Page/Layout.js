@@ -7,22 +7,17 @@ import { connect } from 'react-redux'
 
 import withWidth, { SMALL, MEDIUM, LARGE } from 'material-ui/utils/withWidth';
 
-import action from '../Action';
+import Action from '../Action';
+import Style from '../Style';
 import Sidebar from '../Component/Sidebar';
 import Header from '../Component/Header';
 import Footer from '../Component/Footer';
-
-const style = {
-  main: {
-    paddingLeft: 0,
-  },
-};
 
 class Layout extends Component {
   constructor(props) {
     super(props);
     this.props.action.initSidebar();
-    this.props.action.initStyle('main', style.main);
+    this.props.action.initStyle('main', Style.main);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,9 +38,9 @@ class Layout extends Component {
   }
 
   render() {
-    let { children, SidebarProps } = this.props;
-    let { open, fixed } = SidebarProps;
-    let style = this.props.Style;
+    let { children, sidebarProps } = this.props;
+    let { open, fixed } = sidebarProps;
+    let style = this.props.style;
 
     return (
       <div>
@@ -68,13 +63,13 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
   return {
-    SidebarProps: state.Sidebar,
-    Style: state.Style,
+    sidebarProps: state.sidebar,
+    style: state.style,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  action: bindActionCreators(action, dispatch),
+  action: bindActionCreators(Action, dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withWidth()(Layout));

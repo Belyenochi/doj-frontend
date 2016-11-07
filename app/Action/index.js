@@ -1,11 +1,11 @@
 
-import * as Style from './Style';
-import * as Sidebar from './Sidebar';
+import * as style from './style';
+import * as sidebar from './sidebar';
 
-const action = {
+const Action = {
   __esModule: true,
-  ...Style,
-  ...Sidebar,
+  ...style,
+  ...sidebar,
 };
 
-export default action;
+export default Action;

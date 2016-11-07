@@ -5,11 +5,13 @@ import Drawer from 'material-ui/Drawer';
 
 class Sidebar extends Component {
   render() {
-    const { open, docked } = this.props;
+    const { open, docked, style } = this.props;
     return (
       <Drawer
         open={open}
         docked={docked}
+        style={style.sidebar}
+        zDepth={1}
       >
         Sidebar
       </Drawer>

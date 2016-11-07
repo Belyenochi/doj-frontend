@@ -45,15 +45,15 @@ class Layout extends Component {
     return (
       <div>
         <Title render="Diverse Online Judge" />
-        <Sidebar id="sidebar"
+        <Sidebar
           open={fixed || open}
           docked={fixed}
           style={style}
         />
-        <div id="main" style={style.main} >
-          <Header id="header" style={style.header} showIcon={!fixed} />
-          <div id="content" style={style.content} >{children}</div>
-          <Footer id="footer" />
+        <div style={style.main} >
+          <Header style={style.header} showIcon={!fixed} />
+          <div style={style.content} >{children}</div>
+          <Footer />
         </div>
       </div>
     );

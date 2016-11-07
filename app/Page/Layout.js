@@ -17,7 +17,7 @@ class Layout extends Component {
   constructor(props) {
     super(props);
     this.props.action.initSidebar();
-    this.props.action.initStyle('main', Style.main);
+    this.props.action.initStyle(Style);
   }
 
   componentWillReceiveProps(nextProps) {

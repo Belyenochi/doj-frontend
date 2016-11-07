@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom'
 
-import { grey300 } from 'material-ui/styles/colors';;
+import AppBar from 'material-ui/AppBar';
 
 class Header extends Component {
   render() {
-    const style = {
-      backgroundColor: grey300,
-    };
+    let { showIcon, style } = this.props;
 
     return (
-      <div style={style}>
-        Header
-      </div>
+      <AppBar
+        style={style}
+        showMenuIconButton={showIcon}
+      />
     );
   }
 }

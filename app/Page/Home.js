@@ -5,17 +5,27 @@ import Title from 'react-title-component';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-// import * as action from '../Action';
-import action from '../Action';
+import Action from '../Action';
 
 class Home extends Component {
   render() {
-    let { SidebarProps } = this.props;
+    let { style } = this.props;
 
     return (
       <div>
         <Title render={(prev) => `Home - ${prev}`} />
         Hello from Home Component, this is content.
+        <br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br />
       </div>
     );
   }
@@ -23,12 +33,12 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-    SidebarProps: state.Sidebar,
+    style: state.style,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  action: bindActionCreators(action, dispatch),
+  action: bindActionCreators(Action, dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

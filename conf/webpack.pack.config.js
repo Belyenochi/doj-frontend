@@ -6,9 +6,9 @@ var path = require('path')
 
 module.exports = {
   cache: true,
-  // devtool: 'cheap-source-map',
+  devtool: 'cheap-source-map',
   entry: {
-    main: path.join(__dirname, '../app/app.js'),
+    main: path.join(__dirname, '../app/App.js'),
   },
   output: {
     path: path.join(__dirname, '../public/core/'),
@@ -25,31 +25,31 @@ module.exports = {
           cacheDirectory: true,
         }
       },
-      // {
-      //   test: /\.css$/,
-      //   loader: 'style!css'
-      // },
-      // {
-      //   test: /\.less$/,
-      //   loader: 'style!css!less'
-      // }
     ],
   },
   plugins: [
-  // new webpack.optimize.UglifyJsPlugin({
-  //   compress: { warnings: false },
-  // }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: { warnings: false },
+    // }),
     new webpack.DllReferencePlugin({
-      context: path.join(__dirname, '../'),
-      manifest: require('../public/core/lib_01_base_manifest.json'),
+      context: path.join(__dirname, '..'),
+      manifest: require('../public/core/lib_01_bootstrap_manifest.json'),
     }),
     new webpack.DllReferencePlugin({
-      context: path.join(__dirname, '../'),
+      context: path.join(__dirname, '..'),
       manifest: require('../public/core/lib_02_react_manifest.json'),
     }),
     new webpack.DllReferencePlugin({
-      context: path.join(__dirname, '../'),
-      manifest: require('../public/core/lib_03_material_manifest.json'),
+      context: path.join(__dirname, '..'),
+      manifest: require('../public/core/lib_03_redux_manifest.json'),
+    }),
+    new webpack.DllReferencePlugin({
+      context: path.join(__dirname, '..'),
+      manifest: require('../public/core/lib_04_material_manifest.json'),
+    }),
+    new webpack.DllReferencePlugin({
+      context: path.join(__dirname, '..'),
+      manifest: require('../public/core/lib_05_others_manifest.json'),
     }),
   ]
 };

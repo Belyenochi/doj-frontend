@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { render } from "react-dom";
+import { render } from 'react-dom';
 import Title from 'react-title-component';
 
-class Problem extends Component {
+class ProblemList extends Component {
   render() {
     return (
       <div>
         <Title render={(prev) => `Problem - ${prev}`} />
-        Hello, Problem.
+        Hello, ProblemList.
       </div>
     );
   }
 }
 
-export default Problem;
+export default ProblemList;

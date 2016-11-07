@@ -6,11 +6,13 @@ var path = require('path')
 
 module.exports = {
   cache: true,
-  // devtool: 'cheap-source-map',
+  devtool: 'cheap-source-map',
   entry: {
-    'lib_01_base': ['jquery', 'underscore', 'keycode', 'history'],
-    'lib_02_react': ['react', 'react-dom', 'react-router', 'react-title-component'],
-    'lib_03_material': ['react-tap-event-plugin', 'material-ui'],
+    'lib_01_bootstrap': ['jquery', 'bootstrap'],
+    'lib_02_react': ['react', 'react-dom', 'react-router'],
+    'lib_03_redux': ['redux', 'react-redux'],
+    'lib_04_material': ['material-ui', 'react-tap-event-plugin'],
+    'lib_05_others': ['react-title-component', 'keycode', 'history'],
   },
   output: {
     path: path.join(__dirname, '../public/core/'),
@@ -31,6 +33,9 @@ module.exports = {
     ],
   },
   plugins: [
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: { warnings: false },
+    // }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'lib_00_common',
       filename: "lib_00_common.dll.js",
@@ -38,10 +43,7 @@ module.exports = {
     new webpack.DllPlugin({
       path: path.join(__dirname, '../public/core/', '[name]_manifest.json'),
       name: '[name]_library',
-      context: path.join(__dirname, '../'),
+      context: path.join(__dirname, '..'),
     }),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: { warnings: false },
-    // }),
-  ]
+  ],
 };

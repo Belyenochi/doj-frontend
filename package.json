@@ -18,7 +18,6 @@
     "history": "^4.4.0",
     "json-loader": "^0.5.4",
     "keycode": "^2.1.7",
-    "material-design-icons": "^3.0.1",
     "material-ui": "^0.15.4",
     "morgan": "^1.7.0",
     "mysql": "^2.11.1",

@@ -19,29 +19,27 @@ class Home extends Component {
     return (
       <div>
         <Title render={(prev) => `Home - ${prev}`} />
-        {/* <Grid fluid={true}>
-          <Row> */}
-            <Col xs={12} sm={8} md={6}>
-              <Paper style={style.paper} zDepth={2}>
-                Hello from Home Component, this is content.
-                <br /><br /><br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br /><br /><br />
-              </Paper>
-            </Col>
-            <Col xs={12} sm={4} md={3}>
-              <Paper style={style.paper} zDepth={2}>
-                No Problem.
-                <br /><br /><br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br /><br /><br />
-              </Paper>
-            </Col>
-          {/* </Row>
-        </Grid> */}
+        <Row>
+          <Col xs={12} sm={8}>
+            <Paper style={style.paper} zDepth={2}>
+              Hello from Home Component, this is content.
+              <br /><br /><br /><br /><br /><br /><br /><br />
+              <br /><br /><br /><br /><br /><br /><br /><br />
+              <br /><br /><br /><br /><br /><br /><br /><br />
+              <br /><br /><br /><br /><br /><br /><br /><br />
+              <br /><br /><br /><br /><br /><br /><br /><br />
+            </Paper>
+          </Col>
+          <Col xs={12} sm={4}>
+            <Paper style={style.paper} zDepth={2}>
+              No Problem.
+              <br /><br /><br /><br /><br /><br /><br /><br />
+              <br /><br /><br /><br /><br /><br /><br /><br />
+              <br /><br /><br /><br /><br /><br /><br /><br />
+              <br /><br /><br /><br /><br /><br /><br /><br />
+            </Paper>
+          </Col>
+        </Row>
       </div>
     );
   }

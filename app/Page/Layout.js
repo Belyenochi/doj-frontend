@@ -28,50 +28,34 @@ class Layout extends Component {
     if (width === this.props.width) return;
     if (width === LARGE) {
       this.props.action.fixedSidebar();
-      this.props.action.adjustStyle('main', {
-        // paddingLeft: 256,
-      });
     }
     else {
       this.props.action.unfixedSidebar();
-      this.props.action.adjustStyle('main', {
-        // paddingLeft: 0,
-      });
     }
   }
 
   render() {
-    let { children, sidebarProps } = this.props;
-    let { open, fixed } = sidebarProps;
+    let { children } = this.props;
+    let { open, fixed } = this.props.sidebarProps;
     let style = this.props.style;
-
-    const sidebar = fixed
-      ? (
-        <Col md={3} style={{height: '1000px'}}>
-          <Sidebar
-            open={fixed || open}
-            docked={fixed}
-            style={style}
-          />
-        </Col>
-      )
-      : (
-        <Sidebar
-          open={fixed || open}
-          docked={fixed}
-          style={style}
-        />
-      );
 
     return (
       <div>
         <Title render="Diverse Online Judge" />
         <Grid fluid={true}>
           <Row>
-            {sidebar}
+            <Col md={fixed ? 3 : 0} style={{height: fixed ? 1000 : 0}}>
+              <Sidebar
+                open={fixed || open}
+                docked={fixed}
+                style={style}
+              />
+            </Col>
             <div style={style.main}>
               <Header style={style} showIcon={!fixed} />
-              <div style={style.content}>{children}</div>
+              <Col md={fixed ? 9 : 12}>
+                <div style={style.content}>{children}</div>
+              </Col>
             </div>
           </Row>
           <Row>

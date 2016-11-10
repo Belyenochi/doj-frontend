@@ -1,6 +1,6 @@
 
 import { spacing } from 'material-ui/styles';
-import { grey300 } from 'material-ui/styles/colors';;
+import { grey300 } from 'material-ui/styles/colors';
 
 const logo = {
   fontSize: 24,

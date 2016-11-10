@@ -1,5 +1,5 @@
 
-import { grey300 } from 'material-ui/styles/colors';;
+import { grey300 } from 'material-ui/styles/colors';
 
 const header = {
   position: 'fixed',

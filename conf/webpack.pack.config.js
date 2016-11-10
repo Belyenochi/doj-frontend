@@ -33,15 +33,15 @@ module.exports = {
     // }),
     new webpack.DllReferencePlugin({
       context: path.join(__dirname, '..'),
-      manifest: require('../public/core/lib_01_bootstrap_manifest.json'),
+      manifest: require('../public/core/lib_01_react_manifest.json'),
     }),
     new webpack.DllReferencePlugin({
       context: path.join(__dirname, '..'),
-      manifest: require('../public/core/lib_02_react_manifest.json'),
+      manifest: require('../public/core/lib_02_redux_manifest.json'),
     }),
     new webpack.DllReferencePlugin({
       context: path.join(__dirname, '..'),
-      manifest: require('../public/core/lib_03_redux_manifest.json'),
+      manifest: require('../public/core/lib_03_bootstrap_manifest.json'),
     }),
     new webpack.DllReferencePlugin({
       context: path.join(__dirname, '..'),

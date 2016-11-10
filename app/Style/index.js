@@ -3,6 +3,11 @@ import sidebar from './sidebar';
 import main from './main';
 import header from './header';
 import content from './content';
+import footer from './footer';
+import logo from './logo';
+
+import paper from './paper';
+
 
 const Style = {
   __esModule: true,
@@ -10,6 +15,9 @@ const Style = {
   main: main,
   header: header,
   content: content,
+  footer: footer,
+  paper: paper,
+  logo: logo,
 };
 
 export default Style;

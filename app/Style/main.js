@@ -1,6 +1,6 @@
 
 const main = {
-  paddingLeft: 0,
+  // paddingLeft: 0,
 };
 
 export default main;

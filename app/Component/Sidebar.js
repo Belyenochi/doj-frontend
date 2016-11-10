@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom'
 
 import Drawer from 'material-ui/Drawer';
+import AppBar from 'material-ui/AppBar';
 
 class Sidebar extends Component {
   render() {
@@ -13,7 +14,12 @@ class Sidebar extends Component {
         style={style.sidebar}
         zDepth={1}
       >
-        Sidebar
+        <div style={style.logo}>
+          Diverse OJ
+        </div>
+        <div style={style.content}>
+          Sidebar
+        </div>
       </Drawer>
     );
   }

@@ -19,7 +19,7 @@ class Header extends Component {
 
     return (
       <AppBar
-        style={style}
+        style={style.header}
         showMenuIconButton={showIcon}
         iconElementLeft={leftIcon}
         zDepth={0}

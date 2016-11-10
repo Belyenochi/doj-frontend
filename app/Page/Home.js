@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Title from 'react-title-component';
 
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import Action from '../Action';
 
 import Grid from 'react-bootstrap/lib/Grid';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import Paper from 'material-ui/Paper';
 
-import Action from '../Action';
 
 class Home extends Component {
   render() {

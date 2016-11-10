@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import reducer from './Reducer';
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import reducer from './Reducer';
 import AppRoute from './AppRoute';
 
 // Link to Redux

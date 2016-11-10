@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom'
 
-import FontIcon from 'material-ui/FontIcon';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
+import Apps from 'material-ui/svg-icons/navigation/apps';
 import { black } from 'material-ui/styles/colors';
 
 class Header extends Component {
@@ -13,15 +13,10 @@ class Header extends Component {
     const leftIcon = (
       <IconButton
         onClick={() => action.openSidebar()}
-        iconStyle={{ width: 48, height: 48, fontSize: 48, }}
+        iconStyle={{ width: 48, height: 48 }}
         style={{ width: 56, height: 56, padding: 4 }}
       >
-        <FontIcon
-          className="material-icons"
-          color={black}
-        >
-          apps
-        </FontIcon>
+        <Apps color={black}>apps</Apps>
       </IconButton>
     );
 

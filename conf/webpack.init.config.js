@@ -12,7 +12,7 @@ module.exports = {
     'lib_02_redux': ['redux', 'react-redux'],
     'lib_03_bootstrap': ['react-bootstrap'],
     'lib_04_material': ['material-ui', 'react-tap-event-plugin'],
-    'lib_05_others': ['react-title-component', 'keycode', 'history'],
+    'lib_05_others': ['react-title-component', 'react-responsive', 'keycode', 'history'],
   },
   output: {
     path: path.join(__dirname, '../public/core/'),

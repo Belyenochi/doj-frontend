@@ -41,15 +41,11 @@ module.exports = {
     }),
     new webpack.DllReferencePlugin({
       context: path.join(__dirname, '..'),
-      manifest: require('../public/core/lib_03_bootstrap_manifest.json'),
+      manifest: require('../public/core/lib_03_material_manifest.json'),
     }),
     new webpack.DllReferencePlugin({
       context: path.join(__dirname, '..'),
-      manifest: require('../public/core/lib_04_material_manifest.json'),
-    }),
-    new webpack.DllReferencePlugin({
-      context: path.join(__dirname, '..'),
-      manifest: require('../public/core/lib_05_others_manifest.json'),
+      manifest: require('../public/core/lib_04_others_manifest.json'),
     }),
   ]
 };

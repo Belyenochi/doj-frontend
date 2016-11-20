@@ -22,98 +22,96 @@ class Layout extends Component {
   }
 
   render() {
-    let { children, action, style } = this.props;
+    let { children, location, action, style } = this.props;
     let { open } = this.props.sidebarProps;
     let { smallWidth, mediumWidth, largeWidth } = Constant;
+
+    const undockedSidebar = (
+      <Sidebar
+        open={open}
+        docked={false}
+        style={style}
+        action={action}
+        location={location}
+      />
+    );
+
+    const dockedSidebar = (
+      <Sidebar
+        open={true}
+        docked={true}
+        style={style}
+        action={action}
+        pathname={location.pathname}
+      />
+    );
+
+    const showHeader = (
+      <Header
+        showIcon={true}
+        style={style}
+        action={action}
+      />
+    );
+
+    const unshowHeader = (
+      <Header
+        showIcon={false}
+        style={style}
+        action={action}
+      />
+    );
+
+    const clearFooter = (
+      <div style={{ clear: 'both' }}>
+        <Footer style={style}></Footer>
+      </div>
+    );
 
     return (
       <div>
         <Title render="Diverse Online Judge" />
 
         <MediaQuery maxWidth={smallWidth - 1}>
-          <Sidebar
-            open={open}
-            docked={false}
-            style={style}
-            action={action}
-          />
-          <div>
+          {undockedSidebar}
+          <div style={{ marginLeft: '0px' }}>
             <div style={style.main}>
-              <Header
-                showIcon={true}
-                style={style}
-                action={action}
-              />
+              {showHeader}
               <div style={{ ...style.content }}>{children}</div>
-              <div style={{ clear: 'both' }}>
-                <Footer style={style}></Footer>
-              </div>
+              {clearFooter}
             </div>
           </div>
         </MediaQuery>
 
         <MediaQuery minWidth={smallWidth} maxWidth={mediumWidth - 1}>
-          <Sidebar
-            open={open}
-            docked={false}
-            style={style}
-            action={action}
-          />
-          <div>
+          {undockedSidebar}
+          <div style={{ marginLeft: '0px' }}>
             <div style={style.main}>
-              <Header
-                showIcon={true}
-                style={style}
-                action={action}
-              />
+              {showHeader}
               <div style={{ ...style.content, maxWidth: '700px' }}>{children}</div>
-              <div style={{ clear: 'both' }}>
-                <Footer style={style}></Footer>
-              </div>
+              {clearFooter}
             </div>
           </div>
         </MediaQuery>
 
         <MediaQuery minWidth={mediumWidth} maxWidth={largeWidth - 1}>
-          <Sidebar
-            open={true}
-            docked={true}
-            style={style}
-            action={action}
-          />
+          {dockedSidebar}
           <div style={{ marginLeft: '256px' }}>
             <div style={style.main}>
-              <Header
-                showIcon={false}
-                style={style}
-                action={action}
-              />
+              {unshowHeader}
               <div style={{ ...style.content, maxWidth: '700px' }}>{children}</div>
-              <div style={{ clear: 'both' }}>
-                <Footer style={style}></Footer>
-              </div>
+              {clearFooter}
             </div>
           </div>
         </MediaQuery>
 
         <MediaQuery minWidth={largeWidth}>
-          <Sidebar
-            open={true}
-            docked={true}
-            style={style}
-            action={action}
-          />
+          {dockedSidebar}
           <div style={{ marginLeft: '256px' }}>
             <div style={style.main}>
-              <Header
-                showIcon={false}
-                style={style}
-                action={action}
-              />
+              {unshowHeader}
               <div style={{ ...style.content, maxWidth: '1024px' }}>{children}</div>
-              <div style={{ clear: 'both' }}>
-                <Footer style={style}></Footer>
-              </div>
+              {clearFooter}
             </div>
           </div>
         </MediaQuery>

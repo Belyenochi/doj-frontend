@@ -1,14 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom'
 import { Link } from 'react-router'
 
 import Drawer from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
+import { List, ListItem, makeSelectable } from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
+
+const SelectableList = makeSelectable(List);
 
 class Sidebar extends Component {
-  render() {
-    const { open, docked, style, action } = this.props;
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  };
 
+  render() {
+    const { open, docked, style, action, pathname } = this.props;
+  
     return (
       <Drawer
         open={open}
@@ -19,9 +26,20 @@ class Sidebar extends Component {
         <Link to="/" activeStyle={{ textDecoration: 'none' }}>
           <div style={style.logo}>Diverse OJ</div>
         </Link>
-        <div>
-          Sidebar
-        </div>
+        <SelectableList
+          value={pathname}
+          onChange={(event, value) => { this.context.router.push(value); }}
+        >
+          <Subheader>Online Judge</Subheader>
+          <ListItem primaryText="Home" value="/" />
+          <ListItem
+            primaryText="Problem"
+            primaryTogglesNestedList={true}
+            nestedItems={[
+              <ListItem primaryText="All Problem" value="/problem" />
+            ]}
+          />
+        </SelectableList>
       </Drawer>
     );
   }

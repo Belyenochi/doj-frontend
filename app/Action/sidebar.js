@@ -17,11 +17,3 @@ export const switchSidebar = (open) => ({
   type: 'SWITCH_SIDEBAR',
   open: open,
 });
-
-export const fixedSidebar = () => ({
-  type: 'FIXED_SIDEBAR',
-});
-
-export const unfixedSidebar = () => ({
-  type: 'UNFIXED_SIDEBAR',
-});

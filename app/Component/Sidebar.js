@@ -19,7 +19,7 @@ class Sidebar extends Component {
         <Link to="/" activeStyle={{ textDecoration: 'none' }}>
           <div style={style.logo}>Diverse OJ</div>
         </Link>
-        <div style={style.content}>
+        <div>
           Sidebar
         </div>
       </Drawer>

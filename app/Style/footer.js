@@ -1,8 +1,8 @@
 
-import { grey300 } from 'material-ui/styles/colors';
+import { grey500 } from 'material-ui/styles/colors';
 
 const footer = {
-  backgroundColor: grey300,
+  backgroundColor: grey500,
   textAlign: 'center',
 };
 

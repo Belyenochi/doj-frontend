@@ -27,10 +27,7 @@ class LoginBox extends Component {
       />,
     ];
 
-    const {
-      open,
-      onRequestClose
-    } = this.props;
+    const { open, onRequestClose } = this.props;
 
     return (
       <Dialog

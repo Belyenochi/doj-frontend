@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import Title from 'react-title-component';
 
 import { bindActionCreators } from 'redux';

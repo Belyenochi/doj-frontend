@@ -32,7 +32,7 @@ class Layout extends Component {
         docked={false}
         style={style}
         action={action}
-        location={location}
+        pathname={location.pathname}
       />
     );
 

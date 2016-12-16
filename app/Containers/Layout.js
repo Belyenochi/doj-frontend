@@ -3,25 +3,25 @@ import Title from 'react-title-component';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Action from '../Action';
+import Actions from '../Actions';
 
 import MediaQuery from 'react-responsive';
 
 import Constant from '../utils/constant';
-import Style from '../styles';
-import Sidebar from '../Component/Sidebar';
-import Header from '../Component/Header';
-import Footer from '../Component/Footer';
+import styles from '../styles';
+import Sidebar from '../Components/Sidebar';
+import Header from '../Components/Header';
+import Footer from '../Components/Footer';
 
 class Layout extends Component {
   constructor(props) {
     super(props);
-    this.props.action.initSidebar();
-    this.props.action.initStyle(Style);
+    this.props.actions.initSidebar();
+    this.props.actions.initStyles(styles);
   }
 
   render() {
-    let { children, location, action, style } = this.props;
+    let { children, location, actions, styles } = this.props;
     let { open } = this.props.sidebarProps;
     let { smallWidth, mediumWidth, largeWidth } = Constant;
 
@@ -29,8 +29,8 @@ class Layout extends Component {
       <Sidebar
         open={open}
         docked={false}
-        style={style}
-        action={action}
+        styles={styles}
+        actions={actions}
         pathname={location.pathname}
       />
     );
@@ -39,8 +39,8 @@ class Layout extends Component {
       <Sidebar
         open={true}
         docked={true}
-        style={style}
-        action={action}
+        styles={styles}
+        actions={actions}
         pathname={location.pathname}
       />
     );
@@ -48,22 +48,22 @@ class Layout extends Component {
     const showHeader = (
       <Header
         showIcon={true}
-        style={style}
-        action={action}
+        styles={styles}
+        actions={actions}
       />
     );
 
     const unshowHeader = (
       <Header
         showIcon={false}
-        style={style}
-        action={action}
+        styles={styles}
+        actions={actions}
       />
     );
 
     const clearFooter = (
       <div style={{ clear: 'both' }}>
-        <Footer style={style}></Footer>
+        <Footer styles={styles}></Footer>
       </div>
     );
 
@@ -74,9 +74,9 @@ class Layout extends Component {
         <MediaQuery maxWidth={smallWidth - 1}>
           {undockedSidebar}
           <div style={{ marginLeft: '0px' }}>
-            <div style={style.main}>
+            <div style={styles.main}>
               {showHeader}
-              <div style={{ ...style.content }}>{children}</div>
+              <div style={{ ...styles.content }}>{children}</div>
               {clearFooter}
             </div>
           </div>
@@ -85,9 +85,9 @@ class Layout extends Component {
         <MediaQuery minWidth={smallWidth} maxWidth={mediumWidth - 1}>
           {undockedSidebar}
           <div style={{ marginLeft: '0px' }}>
-            <div style={style.main}>
+            <div style={styles.main}>
               {showHeader}
-              <div style={{ ...style.content, maxWidth: '700px' }}>{children}</div>
+              <div style={{ ...styles.content, maxWidth: '700px' }}>{children}</div>
               {clearFooter}
             </div>
           </div>
@@ -96,9 +96,9 @@ class Layout extends Component {
         <MediaQuery minWidth={mediumWidth} maxWidth={largeWidth - 1}>
           {dockedSidebar}
           <div style={{ marginLeft: '256px' }}>
-            <div style={style.main}>
+            <div style={styles.main}>
               {unshowHeader}
-              <div style={{ ...style.content, maxWidth: '700px' }}>{children}</div>
+              <div style={{ ...styles.content, maxWidth: '700px' }}>{children}</div>
               {clearFooter}
             </div>
           </div>
@@ -107,9 +107,9 @@ class Layout extends Component {
         <MediaQuery minWidth={largeWidth}>
           {dockedSidebar}
           <div style={{ marginLeft: '256px' }}>
-            <div style={style.main}>
+            <div style={styles.main}>
               {unshowHeader}
-              <div style={{ ...style.content, maxWidth: '1024px' }}>{children}</div>
+              <div style={{ ...styles.content, maxWidth: '1024px' }}>{children}</div>
               {clearFooter}
             </div>
           </div>
@@ -121,14 +121,14 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
   return {
-    constant: state.constant,
+        constant: state.constant,
     sidebarProps: state.sidebar,
-    style: state.style,
+          styles: state.styles,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  action: bindActionCreators(Action, dispatch),
+  actions: bindActionCreators(Actions, dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);

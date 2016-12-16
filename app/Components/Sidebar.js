@@ -18,18 +18,18 @@ class Sidebar extends Component {
   };
 
   render() {
-    const { open, docked, style, action, pathname } = this.props;
+    const { open, docked, styles, action, pathname } = this.props;
     const router = this.context.router;
 
     return (
       <Drawer
         open={open}
         docked={docked}
-        style={style.sidebar}
+        style={styles.sidebar}
         onRequestChange={(open) => action.switchSidebar(open)}
       >
         <Link to="/" activeStyle={{ textDecoration: 'none' }}>
-          <div style={style.logo}>Diverse OJ</div>
+          <div style={styles.logo}>Diverse OJ</div>
         </Link>
         <SelectableList
           value={pathname}

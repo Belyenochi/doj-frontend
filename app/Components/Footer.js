@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 class Footer extends Component {
   render() {
-    let { style } = this.props;
+    let { styles } = this.props;
 
     return (
-      <div style={style.footer}>
+      <div style={styles.footer}>
         <div>
           <h5>Help Website Grow</h5>
           <p>

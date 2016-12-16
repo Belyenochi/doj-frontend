@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
-import style from './style';
+import styles from './styles';
 import sidebar from './sidebar';
 
 export default combineReducers({
-  style,
+  styles,
   sidebar,
 });

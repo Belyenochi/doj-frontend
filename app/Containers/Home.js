@@ -3,7 +3,7 @@ import Title from 'react-title-component';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Action from '../Action';
+import Actions from '../Actions';
 
 import Paper from 'material-ui/Paper';
 import MediaQuery from 'react-responsive';
@@ -12,11 +12,11 @@ import Constant from '../utils/constant';
 
 class Home extends Component {
   render() {
-    let { constant, style } = this.props;
+    let { constant, styles } = this.props;
     let { smallWidth, mediumWidth, largeWidth } = Constant
 
     const center = (
-      <Paper style={style.paper} zDepth={2}>
+      <Paper style={styles.paper} zDepth={2}>
         Hello from Home Component, this is content.
         <br /><br /><br /><br /><br /><br /><br /><br />
         <br /><br /><br /><br /><br /><br /><br /><br />
@@ -27,7 +27,7 @@ class Home extends Component {
     );
 
     const right = (
-      <Paper style={style.paper} zDepth={2}>
+      <Paper style={styles.paper} zDepth={2}>
         No Problem.
         <br /><br /><br /><br /><br /><br /><br /><br />
         <br /><br /><br /><br /><br /><br /><br /><br />
@@ -75,12 +75,12 @@ class Home extends Component {
 const mapStateToProps = state => {
   return {
     constant: state.constant,
-    style: state.style,
+      styles: state.styles,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  action: bindActionCreators(Action, dispatch),
+  actions: bindActionCreators(actions, dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

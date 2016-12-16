@@ -7,7 +7,7 @@ import { black } from 'material-ui/styles/colors';
 
 class Header extends Component {
   render() {
-    let { showIcon, style, action } = this.props;
+    let { showIcon, styles, action } = this.props;
 
     const leftIcon = (
       <IconButton
@@ -22,7 +22,7 @@ class Header extends Component {
     return (
       <AppBar
         onLeftIconButtonTouchTap={(event) => {console.log(event);}}
-        style={style.header}
+        style={styles.header}
         showMenuIconButton={showIcon}
         iconElementLeft={leftIcon}
         iconStyleLeft={{ marginTop: 4 }}

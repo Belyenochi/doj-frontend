@@ -1,10 +1,10 @@
 
-import * as style from './style';
+import * as styles from './styles';
 import * as sidebar from './sidebar';
 
 const Action = {
   __esModule: true,
-  ...style,
+  ...styles,
   ...sidebar,
 };
 

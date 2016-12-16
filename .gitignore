@@ -43,3 +43,6 @@ bower_components
 
 # Compiled files
 public/core
+
+# WebStorm
+.idea/

@@ -6,6 +6,9 @@ import Subheader from 'material-ui/Subheader';
 import { List, ListItem, makeSelectable } from 'material-ui/List';
 import IconHome from 'material-ui/svg-icons/action/home';
 import IconList from 'material-ui/svg-icons/editor/format-list-numbered';
+import Filter1 from 'material-ui/svg-icons/image/filter-1';
+import Filter2 from 'material-ui/svg-icons/image/filter-2';
+import Filter3 from 'material-ui/svg-icons/image/filter-3';
 
 const SelectableList = makeSelectable(List);
 
@@ -47,7 +50,21 @@ class Sidebar extends Component {
             primaryText="Problem"
             primaryTogglesNestedList={true}
             nestedItems={[
-              <ListItem primaryText="All Problem" value="/problem" />,
+              <ListItem
+                leftIcon={<Filter1 />}
+                primaryText="All Problem"
+                value="/pl"
+              />,
+              <ListItem
+                leftIcon={<Filter2 />}
+                primaryText="Local Problem"
+                value="/pl/l"
+              />,
+              <ListItem
+                leftIcon={<Filter3 />}
+                primaryText="Remote Problem"
+                value="/pl/r"
+              />,
             ]}
           />
         </SelectableList>

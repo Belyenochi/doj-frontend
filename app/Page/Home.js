@@ -8,7 +8,7 @@ import Action from '../Action';
 import Paper from 'material-ui/Paper';
 import MediaQuery from 'react-responsive';
 
-import Constant from '../Util/Constant';
+import Constant from '../utils/constant';
 
 class Home extends Component {
   render() {

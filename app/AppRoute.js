@@ -16,8 +16,9 @@ const AppRoute = (
   >
     <Route path="/" component={Layout}>
       <IndexRoute component={Home} />
-      <Route path="index" component={Home} />
-      <Route path="problem" component={ProblemList} />
+      <Route path="pl" component={ProblemList} />
+      <Route path="pl/l" component={ProblemList} />
+      <Route path="pl/r" component={ProblemList} />
     </Route>
   </Router>
 );

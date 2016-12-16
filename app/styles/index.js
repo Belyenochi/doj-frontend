@@ -9,7 +9,7 @@ import logo from './logo';
 import paper from './paper';
 
 
-const Style = {
+const styles = {
   __esModule: true,
   sidebar: sidebar,
   main: main,
@@ -20,4 +20,4 @@ const Style = {
   logo: logo,
 };
 
-export default Style;
+export default styles;

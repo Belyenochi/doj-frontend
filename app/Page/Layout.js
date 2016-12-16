@@ -7,8 +7,8 @@ import Action from '../Action';
 
 import MediaQuery from 'react-responsive';
 
-import Constant from '../Util/Constant';
-import Style from '../Style';
+import Constant from '../utils/constant';
+import Style from '../styles';
 import Sidebar from '../Component/Sidebar';
 import Header from '../Component/Header';
 import Footer from '../Component/Footer';

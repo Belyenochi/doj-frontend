@@ -3,7 +3,7 @@ import spacing from 'material-ui/styles/spacing';
 
 const content = {
   paddingTop: spacing.desktopKeylineIncrement,
-  minHeight: 400,
+  minHeight: 560,
   margin: '0px auto'
 };
 

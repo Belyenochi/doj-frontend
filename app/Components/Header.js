@@ -1,19 +1,58 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import Apps from 'material-ui/svg-icons/navigation/apps';
 import { black } from 'material-ui/styles/colors';
 
+function getStyles(props, context) {
+  const { appBar } = context.muiTheme;
+
+  const buttonSize = 56;
+  const iconSize = 48;
+
+  const styles = {
+    root: {
+      position: 'fixed',
+      top: 0,
+    },
+    iconButton: {
+      width: buttonSize,
+      height: buttonSize,
+      padding: (buttonSize - iconSize) / 2,
+    },
+    iconButtonIcon: {
+      width: iconSize,
+      height: iconSize,
+    },
+    iconLeft: {
+      marginTop: (appBar.height - buttonSize) / 2,
+    }
+  };
+
+  return styles;
+}
+
 class Header extends Component {
+  static propTypes = {
+    showIcon: PropTypes.bool,
+    style: PropTypes.object,
+  };
+
+  static contextTypes = {
+    muiTheme: PropTypes.object.isRequired,
+  };
+
   render() {
-    let { showIcon, styles, actions } = this.props;
+    let { showIcon, style, actions } = this.props;
+
+    const styles = getStyles(this.props, this.context);
 
     const leftIcon = (
       <IconButton
         onClick={() => actions.openSidebar()}
-        iconStyle={{ width: 48, height: 48 }}
-        style={{ width: 56, height: 56, padding: 4 }}
+        iconStyle={styles.iconButtonIcon}
+        style={styles.iconButton}
       >
         <Apps color={black}>apps</Apps>
       </IconButton>
@@ -21,13 +60,10 @@ class Header extends Component {
 
     return (
       <AppBar
-        onLeftIconButtonTouchTap={(event) => {
-          console.log(event);
-        }}
-        style={styles.header}
+        style={Object.assign({}, styles.root, style)}
         showMenuIconButton={showIcon}
         iconElementLeft={leftIcon}
-        iconStyleLeft={{ marginTop: 4 }}
+        iconStyleLeft={styles.iconLeft}
         zDepth={0}
       />
     );

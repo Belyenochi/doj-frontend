@@ -4,7 +4,6 @@ import Title from 'react-title-component';
 import {
   Table,
   TableBody,
-  TableFooter,
   TableHeader,
   TableHeaderColumn,
   TableRow,

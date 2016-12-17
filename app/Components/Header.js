@@ -7,11 +7,11 @@ import { black } from 'material-ui/styles/colors';
 
 class Header extends Component {
   render() {
-    let { showIcon, styles, action } = this.props;
+    let { showIcon, styles, actions } = this.props;
 
     const leftIcon = (
       <IconButton
-        onClick={() => action.openSidebar()}
+        onClick={() => actions.openSidebar()}
         iconStyle={{ width: 48, height: 48 }}
         style={{ width: 56, height: 56, padding: 4 }}
       >

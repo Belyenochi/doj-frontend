@@ -22,7 +22,7 @@ class Sidebar extends Component {
   };
 
   render() {
-    const { open, docked, styles, action, pathname } = this.props;
+    const { open, docked, styles, actions, pathname } = this.props;
     const router = this.context.router;
 
     return (
@@ -30,7 +30,7 @@ class Sidebar extends Component {
         open={open}
         docked={docked}
         style={styles.sidebar}
-        onRequestChange={(open) => action.switchSidebar(open)}
+        onRequestChange={(open) => actions.switchSidebar(open)}
       >
         <Link to="/" activeStyle={{ textDecoration: 'none' }}>
           <div style={styles.logo}>Diverse OJ</div>
@@ -39,7 +39,7 @@ class Sidebar extends Component {
           value={pathname}
           onChange={(event, value) => {
             router.push(value);
-            action.closeSidebar();
+            actions.closeSidebar();
           }}
         >
           <Subheader>Person</Subheader>

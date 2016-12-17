@@ -7,8 +7,8 @@ import Actions from '../Actions';
 
 import MediaQuery from 'react-responsive';
 
-import Constant from '../utils/constant';
 import styles from '../styles';
+import constants from '../utils/constants';
 import Sidebar from '../Components/Sidebar';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
@@ -23,7 +23,7 @@ class Layout extends Component {
   render() {
     let { children, location, actions, styles } = this.props;
     let { open } = this.props.sidebarProps;
-    let { smallWidth, mediumWidth, largeWidth } = Constant;
+    let { smallWidth, mediumWidth, largeWidth } = constants;
 
     const undockedSidebar = (
       <Sidebar
@@ -121,9 +121,8 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
   return {
-        constant: state.constant,
     sidebarProps: state.sidebar,
-          styles: state.styles,
+    styles: state.styles,
   };
 };
 

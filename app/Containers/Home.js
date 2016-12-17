@@ -8,12 +8,12 @@ import Actions from '../Actions';
 import Paper from 'material-ui/Paper';
 import MediaQuery from 'react-responsive';
 
-import Constant from '../utils/constant';
+import constants from '../utils/constants';
 
 class Home extends Component {
   render() {
-    let { constant, styles } = this.props;
-    let { smallWidth, mediumWidth, largeWidth } = Constant
+    let { styles } = this.props;
+    let { smallWidth, mediumWidth, largeWidth } = constants;
 
     const center = (
       <Paper style={styles.paper} zDepth={2}>
@@ -74,13 +74,12 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-    constant: state.constant,
-      styles: state.styles,
+    styles: state.styles,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch),
+  actions: bindActionCreators(Actions, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

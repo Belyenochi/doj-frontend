@@ -1,4 +1,3 @@
-
 import { grey500 } from 'material-ui/styles/colors';
 
 const footer = {

@@ -1,4 +1,3 @@
-
 import sidebar from './sidebar';
 import main from './main';
 import header from './header';

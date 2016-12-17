@@ -1,4 +1,3 @@
-
 const style = (state = {}, action) => {
   let newState = Object.assign({}, state);
   switch (action.type) {

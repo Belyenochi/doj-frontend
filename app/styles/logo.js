@@ -1,4 +1,3 @@
-
 import { spacing } from 'material-ui/styles';
 import { indigo300, white } from 'material-ui/styles/colors';
 

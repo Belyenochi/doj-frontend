@@ -1,7 +1,6 @@
-
 export const initStyles = (styles) => ({
   type: 'INIT_STYLES',
-    styles: styles,
+  styles: styles,
 });
 
 export const setStyles = (name, styles) => ({

@@ -1,4 +1,3 @@
-
 import * as styles from './styles';
 import * as sidebar from './sidebar';
 

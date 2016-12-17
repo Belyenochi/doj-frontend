@@ -1,4 +1,3 @@
-
 import spacing from 'material-ui/styles/spacing';
 
 const content = {

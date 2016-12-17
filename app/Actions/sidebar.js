@@ -1,4 +1,3 @@
-
 export const initSidebar = () => ({
   type: 'INIT_SIDEBAR',
 });

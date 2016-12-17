@@ -21,7 +21,9 @@ class Header extends Component {
 
     return (
       <AppBar
-        onLeftIconButtonTouchTap={(event) => {console.log(event);}}
+        onLeftIconButtonTouchTap={(event) => {
+          console.log(event);
+        }}
         style={styles.header}
         showMenuIconButton={showIcon}
         iconElementLeft={leftIcon}

@@ -1,4 +1,3 @@
-
 const constant = {
   smallWidth: 768,
   mediumWidth: 992,

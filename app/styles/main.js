@@ -1,5 +1,3 @@
-
-const main = {
-};
+const main = {};
 
 export default main;

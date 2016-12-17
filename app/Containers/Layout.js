@@ -29,7 +29,6 @@ class Layout extends Component {
       <Sidebar
         open={open}
         docked={false}
-        styles={styles}
         actions={actions}
         pathname={location.pathname}
       />

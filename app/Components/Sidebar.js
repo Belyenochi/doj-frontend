@@ -12,24 +12,50 @@ import Filter3 from 'material-ui/svg-icons/image/filter-3';
 
 const SelectableList = makeSelectable(List);
 
+function getStyles(props, context) {
+  const {
+    appBar,
+    spacing,
+  } = context.muiTheme;
+
+  const styles = {
+    root: {},
+    logo: {
+      backgroundColor: appBar.color,
+      color: appBar.textColor,
+      fontSize: 24,
+      lineHeight: `${spacing.desktopKeylineIncrement}px`,
+      textAlign: 'center',
+    },
+    list: {},
+  };
+
+  return styles;
+}
+
 class Sidebar extends Component {
   static propTypes = {
     open: PropTypes.bool,
+    docked: PropTypes.bool,
+    style: PropTypes.object,
   };
 
   static contextTypes = {
     router: PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {
-    const { open, docked, styles, actions, pathname } = this.props;
-    const router = this.context.router;
+    const { open, docked, style, actions, pathname } = this.props;
+    const { router } = this.context;
+
+    const styles = getStyles(this.props, this.context);
 
     return (
       <Drawer
         open={open}
         docked={docked}
-        style={styles.sidebar}
+        style={Object.assign({}, styles.root, style)}
         onRequestChange={(open) => actions.switchSidebar(open)}
       >
         <Link to="/" activeStyle={{ textDecoration: 'none' }}>
@@ -41,6 +67,7 @@ class Sidebar extends Component {
             router.push(value);
             actions.closeSidebar();
           }}
+          style={styles.list}
         >
           <Subheader>Person</Subheader>
           <Subheader>Common</Subheader>

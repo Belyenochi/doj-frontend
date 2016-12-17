@@ -13,10 +13,7 @@ import Filter3 from 'material-ui/svg-icons/image/filter-3';
 const SelectableList = makeSelectable(List);
 
 function getStyles(props, context) {
-  const {
-    appBar,
-    spacing,
-  } = context.muiTheme;
+  const { appBar, spacing } = context.muiTheme;
 
   const styles = {
     root: {},

@@ -1,11 +1,28 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+
+function getStyles(props, context) {
+  const { palette } = context.muiTheme;
+
+  const styles = {
+    root: {
+      backgroundColor: palette.accent3Color,
+      textAlign: 'center',
+    },
+  };
+
+  return styles;
+}
 
 class Footer extends Component {
+  static contextTypes = {
+    muiTheme: PropTypes.object.isRequired,
+  };
+
   render() {
-    let { styles } = this.props;
+    const styles = getStyles(this.props, this.context);
 
     return (
-      <div style={styles.footer}>
+      <div style={styles.root}>
         <div>
           <h5>Help Website Grow</h5>
           <p>

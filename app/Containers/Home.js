@@ -69,7 +69,7 @@ class Home extends Component {
         </MediaQuery>
       </div>
     );
-  }
+  };
 }
 
 const mapStateToProps = state => {
@@ -81,6 +81,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actions, dispatch),
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

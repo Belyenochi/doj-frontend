@@ -18,7 +18,7 @@ class LoginButton extends Component {
         />
       </div>
     );
-  }
+  };
 }
 
 export default LoginButton;

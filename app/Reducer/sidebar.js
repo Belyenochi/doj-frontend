@@ -13,7 +13,7 @@ const resolve = (state, action) => {
     default:
       return {};
   }
-}
+};
 
 const sidebar = (state = {}, action) => {
   return {

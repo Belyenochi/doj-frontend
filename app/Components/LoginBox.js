@@ -10,7 +10,7 @@ class LoginBox extends Component {
 
   handleSubmit = () => {
     this.props.onRequestClose();
-  }
+  };
 
   render() {
     const actions = [
@@ -62,7 +62,7 @@ class LoginBox extends Component {
         /><br />
       </Dialog>
     );
-  }
+  };
 }
 
 export default LoginBox;

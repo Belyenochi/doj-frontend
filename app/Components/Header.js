@@ -29,7 +29,7 @@ class Header extends Component {
         zDepth={0}
       />
     );
-  }
+  };
 }
 
 

@@ -116,7 +116,7 @@ class Layout extends Component {
         </MediaQuery>
       </div>
     );
-  }
+  };
 }
 
 const mapStateToProps = state => {
@@ -129,6 +129,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(Actions, dispatch),
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);

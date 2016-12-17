@@ -13,6 +13,10 @@ import Filter3 from 'material-ui/svg-icons/image/filter-3';
 const SelectableList = makeSelectable(List);
 
 class Sidebar extends Component {
+  static propTypes = {
+    open: PropTypes.bool,
+  };
+
   static contextTypes = {
     router: PropTypes.object.isRequired,
   };
@@ -70,7 +74,7 @@ class Sidebar extends Component {
         </SelectableList>
       </Drawer>
     );
-  }
+  };
 }
 
 export default Sidebar;

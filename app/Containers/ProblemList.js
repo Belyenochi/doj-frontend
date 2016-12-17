@@ -110,7 +110,7 @@ class ProblemList extends Component {
         </Table>
       </div>
     );
-  }
+  };
 }
 
 export default ProblemList;

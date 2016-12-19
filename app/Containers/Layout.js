@@ -1,117 +1,86 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Title from 'react-title-component';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Actions from '../Actions';
 
-import MediaQuery from 'react-responsive';
-
-import styles from '../styles';
-import constants from '../utils/constants';
 import Sidebar from '../Components/Sidebar';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
+
+function getStyles(props, context) {
+  const { width } = context;
+  const { spacing } = context.muiTheme;
+
+  const styles = {
+    content: {
+      paddingTop: spacing.desktopKeylineIncrement,
+      minHeight: 560,
+      margin: '0px auto',
+      maxWidth: width >= 3 ? '1024px' : '700px',
+    },
+    main: {
+      marginLeft: width >= 2 ? '256px' : '0px',
+    },
+    clear: {
+      clear: 'both',
+    },
+  };
+
+  return styles;
+}
 
 class Layout extends Component {
   constructor(props) {
     super(props);
     this.props.actions.initSidebar();
-    this.props.actions.initStyles(styles);
-  }
+  };
+
+  static contextTypes = {
+    width: PropTypes.number.isRequired,
+    muiTheme: PropTypes.object.isRequired,
+  };
 
   render() {
-    let { children, location, actions, styles } = this.props;
+    let { children, location, actions } = this.props;
     let { open } = this.props.sidebarProps;
-    let { smallWidth, mediumWidth, largeWidth } = constants;
+    let { width } = this.context;
 
-    const undockedSidebar = (
-      <Sidebar
-        open={open}
-        docked={false}
-        actions={actions}
-        pathname={location.pathname}
-      />
+    const styles = getStyles(this.props, this.context);
+
+    const sidebar = (
+      ((matches) => (
+        <Sidebar
+          open={matches || open}
+          docked={matches}
+          actions={actions}
+          pathname={location.pathname}
+        />
+      ))(width >= 2)
     );
 
-    const dockedSidebar = (
-      <Sidebar
-        open={true}
-        docked={true}
-        actions={actions}
-        pathname={location.pathname}
-      />
-    );
-
-    const showHeader = (
-      <Header
-        showIcon={true}
-        styles={styles}
-        actions={actions}
-      />
-    );
-
-    const unshowHeader = (
-      <Header
-        showIcon={false}
-        styles={styles}
-        actions={actions}
-      />
-    );
-
-    const clearFooter = (
-      <div style={{ clear: 'both' }}>
-        <Footer styles={styles}></Footer>
-      </div>
+    const header = (
+      ((matches) => (
+        <Header
+          showIcon={!matches}
+          actions={actions}
+        />
+      ))(width >= 2)
     );
 
     return (
       <div>
         <Title render="Diverse Online Judge" />
-
-        <MediaQuery maxWidth={smallWidth - 1}>
-          {undockedSidebar}
-          <div style={{ marginLeft: '0px' }}>
-            <div style={styles.main}>
-              {showHeader}
-              <div style={{ ...styles.content }}>{children}</div>
-              {clearFooter}
-            </div>
+        <div>
+          {sidebar}
+          <div style={styles.main}>
+            {header}
+            <div style={styles.content}>{children}</div>
+            <br style={styles.clear} />
+            <Footer />
           </div>
-        </MediaQuery>
-
-        <MediaQuery minWidth={smallWidth} maxWidth={mediumWidth - 1}>
-          {undockedSidebar}
-          <div style={{ marginLeft: '0px' }}>
-            <div style={styles.main}>
-              {showHeader}
-              <div style={{ ...styles.content, maxWidth: '700px' }}>{children}</div>
-              {clearFooter}
-            </div>
-          </div>
-        </MediaQuery>
-
-        <MediaQuery minWidth={mediumWidth} maxWidth={largeWidth - 1}>
-          {dockedSidebar}
-          <div style={{ marginLeft: '256px' }}>
-            <div style={styles.main}>
-              {unshowHeader}
-              <div style={{ ...styles.content, maxWidth: '700px' }}>{children}</div>
-              {clearFooter}
-            </div>
-          </div>
-        </MediaQuery>
-
-        <MediaQuery minWidth={largeWidth}>
-          {dockedSidebar}
-          <div style={{ marginLeft: '256px' }}>
-            <div style={styles.main}>
-              {unshowHeader}
-              <div style={{ ...styles.content, maxWidth: '1024px' }}>{children}</div>
-              {clearFooter}
-            </div>
-          </div>
-        </MediaQuery>
+        </div>
       </div>
     );
   };
@@ -120,7 +89,6 @@ class Layout extends Component {
 const mapStateToProps = state => {
   return {
     sidebarProps: state.sidebar,
-    styles: state.styles,
   };
 };
 

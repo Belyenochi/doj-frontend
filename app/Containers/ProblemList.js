@@ -55,7 +55,7 @@ const tableData = [
 
 class ProblemList extends Component {
   state = {
-    showCheckboxes: false,
+    showCheckboxes: true,
     stripedRows: true,
     showRowHover: true,
   };
@@ -65,7 +65,7 @@ class ProblemList extends Component {
       <div>
         <Title render={(prev) => `Problem · ${prev}`} />
         <Table
-          selectable={false}
+          selectable={this.state.showCheckboxes}
         >
           <TableHeader
             displaySelectAll={this.state.showCheckboxes}

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Title from 'react-title-component';
 
 import { bindActionCreators } from 'redux';
@@ -6,77 +6,90 @@ import { connect } from 'react-redux';
 import Actions from '../Actions';
 
 import Paper from 'material-ui/Paper';
-import MediaQuery from 'react-responsive';
 
-import constants from '../utils/constants';
+function getStyles(props, context) {
+  const { width } = context;
+
+  const rightBlockSize = ((width) => {
+    if (width === 3) return '288px';
+    if (width === 2) return '256px';
+    if (width === 1) return '224px';
+    return '';
+  })(width);
+
+  const styles = {
+    root: {
+      position: 'relative',
+      padding: '20px',
+    },
+    paper: {
+      marginLeft: '10px',
+      marginRight: '10px',
+    },
+    center: {
+      marginBottom: width > 0 ? '' : '20px',
+      marginRight: width > 0 ? rightBlockSize : '',
+    },
+    right: {
+      marginTop: width > 0 ? '' : '20px',
+      width: rightBlockSize,
+      float: width > 0 ? 'right' : '',
+    },
+    clear: {
+      clear: "both",
+    },
+  };
+
+  return styles;
+}
 
 class Home extends Component {
+  static contextTypes = {
+    width: PropTypes.number.isRequired,
+  };
+
   render() {
-    let { styles } = this.props;
-    let { smallWidth, mediumWidth, largeWidth } = constants;
+    const styles = getStyles(this.props, this.context);
 
     const center = (
-      <Paper style={styles.paper} zDepth={2}>
-        Hello from Home Component, this is content.
-        <br /><br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br /><br />
-      </Paper>
+      <div style={styles.center}>
+        <Paper style={styles.paper} zDepth={2}>
+          Hello from Home Component, this is content.
+          <br /><br /><br /><br /><br /><br /><br /><br />
+          <br /><br /><br /><br /><br /><br /><br /><br />
+          <br /><br /><br /><br /><br /><br /><br /><br />
+          <br /><br /><br /><br /><br /><br /><br /><br />
+          <br /><br /><br /><br /><br /><br /><br /><br />
+        </Paper>
+      </div>
     );
 
     const right = (
-      <Paper style={styles.paper} zDepth={2}>
-        No Problem.
-        <br /><br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br /><br />
-      </Paper>
+      <div style={styles.right}>
+        <Paper style={styles.paper} zDepth={2}>
+          No Problem.
+          <br /><br /><br /><br /><br /><br /><br /><br />
+          <br /><br /><br /><br /><br /><br /><br /><br />
+          <br /><br /><br /><br /><br /><br /><br /><br />
+          <br /><br /><br /><br /><br /><br /><br /><br />
+        </Paper>
+      </div>
     );
 
     return (
       <div>
         <Title render={(prev) => `Home · ${prev}`} />
-
-        <MediaQuery maxWidth={smallWidth - 1}>
-          <div>
-            <div style={{ margin: '20px' }}>{center}</div>
-            <div style={{ margin: '20px' }}>{right}</div>
-          </div>
-        </MediaQuery>
-
-        <MediaQuery minWidth={smallWidth} maxWidth={mediumWidth - 1}>
-          <div style={{ margin: '20px' }}>
-            <div style={{ width: '224px', float: 'right' }}>{right}</div>
-            <div style={{ marginRight: '224px' }}>{center}</div>
-          </div>
-        </MediaQuery>
-
-        <MediaQuery minWidth={mediumWidth} maxWidth={largeWidth - 1}>
-          <div style={{ margin: '20px' }}>
-            <div style={{ width: '256px', float: 'right' }}>{right}</div>
-            <div style={{ marginRight: '256px' }}>{center}</div>
-          </div>
-        </MediaQuery>
-
-        <MediaQuery minWidth={largeWidth}>
-          <div style={{ margin: '20px' }}>
-            <div style={{ width: '288px', float: 'right' }}>{right}</div>
-            <div style={{ marginRight: '288px' }}>{center}</div>
-          </div>
-        </MediaQuery>
+        <div style={styles.root}>
+          {right}
+          {center}
+        </div>
+        <br style={styles.clear} />
       </div>
     );
   };
 }
 
-const mapStateToProps = state => {
-  return {
-    styles: state.styles,
-  };
-};
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(Actions, dispatch),

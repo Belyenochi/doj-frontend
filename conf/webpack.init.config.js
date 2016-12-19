@@ -10,8 +10,8 @@ module.exports = {
   entry: {
     'lib_01_react': ['react', 'react-dom', 'react-router', 'react-title-component'],
     'lib_02_redux': ['redux', 'react-redux'],
-    'lib_03_material': ['material-ui', 'react-tap-event-plugin', 'react-responsive'],
-    'lib_04_others': ['keycode', 'history'],
+    'lib_03_material': ['material-ui', 'react-tap-event-plugin'],
+    'lib_04_others': ['matchmedia', 'radium', 'keycode', 'history'],
   },
   output: {
     path: path.join(__dirname, '../public/core/'),
@@ -26,6 +26,7 @@ module.exports = {
         exclude: /node_modules/,
         query: {
           presets: ['es2015', 'stage-0', 'react'],
+          plugins: ["transform-decorators-legacy"],
           cacheDirectory: true,
         }
       },

@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
-
-import { grey300 } from 'material-ui/styles/colors';;
 
 class Footer extends Component {
   render() {
-    const style = {
-      backgroundColor: grey300,
-      textAlign: 'center',
-    };
+    let { style } = this.props;
 
     return (
-      <div style={style}>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 col-md-offset-2">
-              Footer
-            </div>
-          </div>
+      <div style={style.footer}>
+        <div>
+          <h5>Help Website Grow</h5>
+          <p>
+            Discuss new features, future goals, general problems or questions, or anything else you can think of.
+          </p>
+          <a target="_blank" href="https://github.com/ChouUn/acm.zucc.edu.cn/issues">Issues</a>
         </div>
       </div>
     );

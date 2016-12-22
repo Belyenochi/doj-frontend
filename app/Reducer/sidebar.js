@@ -1,29 +1,14 @@
-const resolve = (action) => {
+const resolve = (state, action) => {
   switch (action.type) {
     case 'INIT_SIDEBAR':
-      return {
-        open: false,
-        fixed: false,
-      };
-    case 'OPEN_SIDEBAR':
-      return {
-        open: true,
-      };
-    case 'CLOSE_SIDEBAR':
       return {
         open: false,
       };
     case 'SWITCH_SIDEBAR':
       return {
-        open: action.open,
-      };
-    case 'FIXED_SIDEBAR':
-      return {
-        fixed: true,
-      };
-    case 'UNFIXED_SIDEBAR':
-      return {
-        fixed: false,
+        open: action.open !== undefined
+          ? action.open
+          : !state.open,
       };
     default:
       return {};
@@ -33,7 +18,7 @@ const resolve = (action) => {
 const sidebar = (state = {}, action) => {
   return {
     ...state,
-    ...resolve(action),
+    ...resolve(state, action),
   };
 };
 

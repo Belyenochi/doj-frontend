@@ -8,11 +8,10 @@ module.exports = {
   cache: true,
   devtool: 'cheap-source-map',
   entry: {
-    'lib_01_bootstrap': ['jquery', 'bootstrap'],
-    'lib_02_react': ['react', 'react-dom', 'react-router'],
-    'lib_03_redux': ['redux', 'react-redux'],
-    'lib_04_material': ['material-ui', 'react-tap-event-plugin'],
-    'lib_05_others': ['react-title-component', 'keycode', 'history'],
+    'lib_01_react': ['react', 'react-dom', 'react-router', 'react-title-component'],
+    'lib_02_redux': ['redux', 'react-redux'],
+    'lib_03_material': ['material-ui', 'react-tap-event-plugin', 'react-responsive'],
+    'lib_04_others': ['keycode', 'history'],
   },
   output: {
     path: path.join(__dirname, '../public/core/'),

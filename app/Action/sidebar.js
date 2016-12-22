@@ -4,22 +4,16 @@ export const initSidebar = () => ({
 });
 
 export const closeSidebar = () => ({
-  type: 'CLOSE_SIDEBAR',
+  type: 'SWITCH_SIDEBAR',
+  open: false,
 });
 
 export const openSidebar = () => ({
-  type: 'OPEN_SIDEBAR',
+  type: 'SWITCH_SIDEBAR',
+  open: true,
 });
 
 export const switchSidebar = (open) => ({
   type: 'SWITCH_SIDEBAR',
   open: open,
-});
-
-export const fixedSidebar = () => ({
-  type: 'FIXED_SIDEBAR',
-});
-
-export const unfixedSidebar = () => ({
-  type: 'UNFIXED_SIDEBAR',
 });

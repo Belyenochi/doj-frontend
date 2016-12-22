@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import Title from 'react-title-component';
 
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-
-import withWidth, { SMALL, MEDIUM, LARGE } from 'material-ui/utils/withWidth';
-
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import Action from '../Action';
-import Style from '../Style';
+
+import MediaQuery from 'react-responsive';
+
+import Constant from '../utils/constant';
+import Style from '../styles';
 import Sidebar from '../Component/Sidebar';
 import Header from '../Component/Header';
 import Footer from '../Component/Footer';
@@ -20,41 +20,100 @@ class Layout extends Component {
     this.props.action.initStyle(Style);
   }
 
-  componentWillReceiveProps(nextProps) {
-    let { width } = nextProps;
-    if (width === this.props.width) return;
-    if (width === LARGE) {
-      this.props.action.fixedSidebar();
-      this.props.action.adjustStyle('main', {
-        paddingLeft: 256,
-      });
-    }
-    else {
-      this.props.action.unfixedSidebar();
-      this.props.action.adjustStyle('main', {
-        paddingLeft: 0,
-      });
-    }
-  }
-
   render() {
-    let { children, sidebarProps } = this.props;
-    let { open, fixed } = sidebarProps;
-    let style = this.props.style;
+    let { children, location, action, style } = this.props;
+    let { open } = this.props.sidebarProps;
+    let { smallWidth, mediumWidth, largeWidth } = Constant;
+
+    const undockedSidebar = (
+      <Sidebar
+        open={open}
+        docked={false}
+        style={style}
+        action={action}
+        pathname={location.pathname}
+      />
+    );
+
+    const dockedSidebar = (
+      <Sidebar
+        open={true}
+        docked={true}
+        style={style}
+        action={action}
+        pathname={location.pathname}
+      />
+    );
+
+    const showHeader = (
+      <Header
+        showIcon={true}
+        style={style}
+        action={action}
+      />
+    );
+
+    const unshowHeader = (
+      <Header
+        showIcon={false}
+        style={style}
+        action={action}
+      />
+    );
+
+    const clearFooter = (
+      <div style={{ clear: 'both' }}>
+        <Footer style={style}></Footer>
+      </div>
+    );
 
     return (
       <div>
         <Title render="Diverse Online Judge" />
-        <Sidebar
-          open={fixed || open}
-          docked={fixed}
-          style={style}
-        />
-        <div style={style.main} >
-          <Header style={style.header} showIcon={!fixed} />
-          <div style={style.content} >{children}</div>
-          <Footer />
-        </div>
+
+        <MediaQuery maxWidth={smallWidth - 1}>
+          {undockedSidebar}
+          <div style={{ marginLeft: '0px' }}>
+            <div style={style.main}>
+              {showHeader}
+              <div style={{ ...style.content }}>{children}</div>
+              {clearFooter}
+            </div>
+          </div>
+        </MediaQuery>
+
+        <MediaQuery minWidth={smallWidth} maxWidth={mediumWidth - 1}>
+          {undockedSidebar}
+          <div style={{ marginLeft: '0px' }}>
+            <div style={style.main}>
+              {showHeader}
+              <div style={{ ...style.content, maxWidth: '700px' }}>{children}</div>
+              {clearFooter}
+            </div>
+          </div>
+        </MediaQuery>
+
+        <MediaQuery minWidth={mediumWidth} maxWidth={largeWidth - 1}>
+          {dockedSidebar}
+          <div style={{ marginLeft: '256px' }}>
+            <div style={style.main}>
+              {unshowHeader}
+              <div style={{ ...style.content, maxWidth: '700px' }}>{children}</div>
+              {clearFooter}
+            </div>
+          </div>
+        </MediaQuery>
+
+        <MediaQuery minWidth={largeWidth}>
+          {dockedSidebar}
+          <div style={{ marginLeft: '256px' }}>
+            <div style={style.main}>
+              {unshowHeader}
+              <div style={{ ...style.content, maxWidth: '1024px' }}>{children}</div>
+              {clearFooter}
+            </div>
+          </div>
+        </MediaQuery>
       </div>
     );
   }
@@ -62,6 +121,7 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
   return {
+    constant: state.constant,
     sidebarProps: state.sidebar,
     style: state.style,
   };
@@ -71,4 +131,4 @@ const mapDispatchToProps = dispatch => ({
   action: bindActionCreators(Action, dispatch),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withWidth()(Layout));
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

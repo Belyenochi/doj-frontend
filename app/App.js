@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import reducer from './Reducer';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
-import reducer from './Reducer';
+import theme from './styles/theme';
 import AppRoute from './AppRoute';
 
 // Link to Redux
@@ -25,7 +27,7 @@ injectTapEventPlugin();
 let rootElement = document.getElementById('app');
 render(
   <Provider store={store}>
-    <MuiThemeProvider>
+    <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
       {AppRoute}
     </MuiThemeProvider>
   </Provider>,

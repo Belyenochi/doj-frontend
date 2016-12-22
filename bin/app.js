@@ -23,7 +23,7 @@ app.set('view engine', 'pug');
 app.use(express.static(app.get('static_path')));
 
 // favicon
-app.use(favicon(path.join(app.get('static_path'), 'favicon.png')));
+app.use(favicon(path.join(app.get('static_path'), 'img', 'favicon.png')));
 
 // log
 if (!module.parent) app.use(morgan('dev'));

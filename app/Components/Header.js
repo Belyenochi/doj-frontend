@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
+import { AppBar, IconButton } from 'material-ui';
 import Apps from 'material-ui/svg-icons/navigation/apps';
 import { black } from 'material-ui/styles/colors';
 

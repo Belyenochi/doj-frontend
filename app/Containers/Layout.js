@@ -3,14 +3,15 @@ import Title from 'react-title-component';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Actions from '../Actions';
 
 import Sidebar from '../Components/Sidebar';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 
+import Actions from '../Actions';
+
 function getStyles(props, context) {
-  const { width } = context;
+  const { screenWidth } = context;
   const { spacing } = context.muiTheme;
 
   const styles = {
@@ -18,10 +19,10 @@ function getStyles(props, context) {
       paddingTop: spacing.desktopKeylineIncrement,
       minHeight: 560,
       margin: '0px auto',
-      maxWidth: width >= 3 ? '1024px' : '700px',
+      maxWidth: screenWidth >= 3 ? '1024px' : '700px',
     },
     main: {
-      marginLeft: width >= 2 ? '256px' : '0px',
+      marginLeft: screenWidth >= 2 ? '256px' : '0px',
     },
     clear: {
       clear: 'both',
@@ -38,35 +39,35 @@ class Layout extends Component {
   };
 
   static contextTypes = {
-    width: PropTypes.number.isRequired,
+    screenWidth: PropTypes.number.isRequired,
     muiTheme: PropTypes.object.isRequired,
   };
 
   render() {
     let { children, location, actions } = this.props;
     let { open } = this.props.sidebarProps;
-    let { width } = this.context;
+    let { screenWidth } = this.context;
 
     const styles = getStyles(this.props, this.context);
 
     const sidebar = (
-      ((matches) => (
+      (match => (
         <Sidebar
-          open={matches || open}
-          docked={matches}
+          open={match || open}
+          docked={match}
           actions={actions}
           pathname={location.pathname}
         />
-      ))(width >= 2)
+      ))(screenWidth >= 2)
     );
 
     const header = (
-      ((matches) => (
+      (match => (
         <Header
-          showIcon={!matches}
+          showIcon={!match}
           actions={actions}
         />
-      ))(width >= 2)
+      ))(screenWidth >= 2)
     );
 
     return (

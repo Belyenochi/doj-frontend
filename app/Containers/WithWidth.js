@@ -10,16 +10,16 @@ class WithWidth extends Component {
   };
 
   static childContextTypes = {
-    width: PropTypes.number,
+    screenWidth: PropTypes.number,
   };
 
   state = {
-    width: 0,
+    screenWidth: 0,
   };
 
   getChildContext() {
     return {
-      width: this.state.width,
+      screenWidth: this.state.screenWidth,
     };
   }
 
@@ -54,9 +54,9 @@ class WithWidth extends Component {
 
   updateWidth = () => {
     let newWidth = this.queryWidth();
-    if (this.state.width === newWidth) return;
+    if (this.state.screenWidth === newWidth) return;
     this.setState({
-      width: newWidth,
+      screenWidth: newWidth,
     });
   }
 

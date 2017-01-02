@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import RaisedButton from 'material-ui/RaisedButton';
+import { RaisedButton } from 'material-ui';
 
 import LoginBox from './LoginBox';
 

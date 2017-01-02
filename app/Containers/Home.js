@@ -3,19 +3,20 @@ import Title from 'react-title-component';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import { Paper } from 'material-ui';
+
 import Actions from '../Actions';
 
-import Paper from 'material-ui/Paper';
-
 function getStyles(props, context) {
-  const { width } = context;
+  const { screenWidth } = context;
 
   const rightBlockSize = ((width) => {
     if (width === 3) return '288px';
     if (width === 2) return '256px';
     if (width === 1) return '224px';
     return '';
-  })(width);
+  })(screenWidth);
 
   const styles = {
     root: {
@@ -27,13 +28,13 @@ function getStyles(props, context) {
       marginRight: '10px',
     },
     center: {
-      marginBottom: width > 0 ? '' : '20px',
-      marginRight: width > 0 ? rightBlockSize : '',
+      marginBottom: screenWidth > 0 ? '' : '20px',
+      marginRight: screenWidth > 0 ? rightBlockSize : '',
     },
     right: {
-      marginTop: width > 0 ? '' : '20px',
+      marginTop: screenWidth > 0 ? '' : '20px',
       width: rightBlockSize,
-      float: width > 0 ? 'right' : '',
+      float: screenWidth > 0 ? 'right' : '',
     },
     clear: {
       clear: "both",
@@ -45,7 +46,7 @@ function getStyles(props, context) {
 
 class Home extends Component {
   static contextTypes = {
-    width: PropTypes.number.isRequired,
+    screenWidth: PropTypes.number.isRequired,
   };
 
   render() {

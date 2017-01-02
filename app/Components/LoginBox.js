@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
+import { Dialog, FlatButton, TextField } from 'material-ui';
 
 import keycode from 'keycode';
 

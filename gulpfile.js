@@ -9,26 +9,32 @@ gulp.task('clean', function() {
   // rimraf('./dist', callback);
 });
 
-gulp.task('build', ['clean'], () => init());
+gulp.task('build', ['clean'], () => dll());
 
 gulp.task('watch', ['build'], function() {
   gulp.watch('app/**/*')
-    .on('change', () => pack());
+    .on('change', () => develop());
 });
 
-gulp.task('release', ['clean', 'build']);
+gulp.task('release', ['clean'], () => release());
 
 gulp.task('develop', ['clean', 'build', 'watch']);
 
-function init() {
-  webpack(require('./conf/webpack.init.config'), function(err, stats) {
+function dll() {
+  webpack(require('./conf/webpack.dll.config.js'), function(err, stats) {
     console.log(stats.toString());
-    pack();
+    develop();
   });
 }
 
-function pack() {
-  webpack(require('./conf/webpack.pack.config'), function(err, stats) {
+function develop() {
+  webpack(require('./conf/webpack.develop.config.js'), function(err, stats) {
+    console.log(stats.toString());
+  });
+}
+
+function release() {
+  webpack(require('./conf/webpack.release.config.js'), function(err, stats) {
     console.log(stats.toString());
   });
 }

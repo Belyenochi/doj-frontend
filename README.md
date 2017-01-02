@@ -7,9 +7,11 @@ Post Scriptum: The old repository [*fateud.com*](https://github.com/ChouUn/fateu
 ## Prerequisites
 
 * frontend
-  * Babel, jQuery, Underscore
-  * React, Material-UI, alt
-  * ACE (Ajax.org Cloud9 Editor), Markdown Plus
+  * Babel, Lodash
+  * React, React-Router
+  * Redux, React-Redux 
+  * Radium, Material-UI
+  * ACE, Markdown Plus, KaTeX
 * backend
   * Node.js
   * MySQL

@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 
 import { AppBar, IconButton } from 'material-ui';
+import { colors } from 'material-ui/styles';
 import Apps from 'material-ui/svg-icons/navigation/apps';
-import { black } from 'material-ui/styles/colors';
+
+const { black } = colors;
 
 function getStyles(props, context) {
   const { appBar } = context.muiTheme;

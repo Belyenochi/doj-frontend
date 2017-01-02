@@ -3,12 +3,11 @@ import { render } from 'react-dom';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from './Reducer';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { MuiThemeProvider, getMuiTheme } from 'material-ui/styles';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
+import reducer from './Reducer';
 import theme from './styles/theme';
 import WithWidth from './Containers/WithWidth';
 import AppRoute from './AppRoute';

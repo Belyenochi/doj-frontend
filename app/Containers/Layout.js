@@ -12,7 +12,7 @@ import Actions from '../Actions';
 import withWidth from '../utils/withWidth';
 
 function getStyles(props, context) {
-  const { screenWidth } = context;
+  const { screenWidth } = props;
   const { spacing } = context.muiTheme;
 
   const styles = {

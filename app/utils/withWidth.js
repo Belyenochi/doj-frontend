@@ -2,9 +2,36 @@ import React, { Component } from 'react';
 import EventListener from 'react-event-listener';
 import _ from 'lodash';
 
-// A decorator for listening width of screen
+/**
+ * A decorator for listening width of screen
+ *
+ * @param options
+ * @returns a function to generate Component
+ *
+ * Such as: @withWidth({
+ *   widths: ...
+ *   resizeInterval: ...
+ * })
+ * Class RealComponent extends Component {
+ *   ...
+ * }
+ *
+ */
 export default function withWidth(options = {}) {
   const {
+    /**
+     * The 'widths' is a set of [key, value],
+     * both of key and value should be incremental.
+     * The key means the width level of screen,
+     * and the value means the width size of screen.
+     *
+     * Such as:
+     * widths = {
+     *   1: 768,
+     *   2: 992,
+     *   3: 1200,
+     * }
+     */
     widths,
     resizeInterval = 1000 / 60,
   } = options;
@@ -14,7 +41,7 @@ export default function withWidth(options = {}) {
       state = {
         /**
          * 0, as the default value,
-         * means the smallest width.
+         * means the lowest width level.
          */
         width: 0,
       };
@@ -27,19 +54,24 @@ export default function withWidth(options = {}) {
       }
 
       componentWillUnmount() {
-        clearTimeout(this.deferTimer);
+        clearTimeout(this.timer);
       }
 
       handleResize = () => {
-        clearTimeout(this.deferTimer);
-        this.deferTimer = setTimeout(() => {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
           this.updateWidth();
         }, resizeInterval);
       };
 
       updateWidth() {
+        // current screen width
         const innerWidth = window.innerWidth;
 
+        /**
+         * The 'width' will be the highest level
+         * that current screen width meets (not less than).
+         */
         let width = _.reduce(widths, (result, value, key) => {
           if (innerWidth >= value) return Number(key);
           return result;

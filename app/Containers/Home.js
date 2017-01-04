@@ -7,9 +7,10 @@ import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
 
 import Actions from '../Actions';
+import withWidth from '../utils/withWidth';
 
 function getStyles(props, context) {
-  const { screenWidth } = context;
+  const { screenWidth } = props;
 
   const rightBlockSize = ((width) => {
     if (width === 3) return '288px';
@@ -44,8 +45,15 @@ function getStyles(props, context) {
   return styles;
 }
 
+@withWidth({
+  widths: {
+    1: 768,
+    2: 992,
+    3: 1200
+  }
+})
 class Home extends Component {
-  static contextTypes = {
+  static propTypes = {
     screenWidth: PropTypes.number.isRequired,
   };
 

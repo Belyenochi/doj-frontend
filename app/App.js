@@ -9,7 +9,6 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import reducer from './Reducer';
 import theme from './styles/theme';
-import WithWidth from './Containers/WithWidth';
 import AppRoute from './AppRoute';
 
 // Link to Redux
@@ -26,12 +25,10 @@ injectTapEventPlugin();
 // For more details see: https://facebook.github.io/react/docs/top-level-api.html#react.render
 let rootElement = document.getElementById('app');
 render(
-  <WithWidth>
-    <Provider store={store}>
-      <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
-        {AppRoute}
-      </MuiThemeProvider>
-    </Provider>
-  </WithWidth>,
+  <Provider store={store}>
+    <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
+      {AppRoute}
+    </MuiThemeProvider>
+  </Provider>,
   rootElement
 );

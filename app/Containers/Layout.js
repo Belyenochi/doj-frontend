@@ -9,6 +9,7 @@ import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 
 import Actions from '../Actions';
+import withWidth from '../utils/withWidth';
 
 function getStyles(props, context) {
   const { screenWidth } = context;
@@ -32,6 +33,13 @@ function getStyles(props, context) {
   return styles;
 }
 
+@withWidth({
+  widths: {
+    1: 768,
+    2: 992,
+    3: 1200
+  }
+})
 class Layout extends Component {
   constructor(props) {
     super(props);
@@ -39,14 +47,17 @@ class Layout extends Component {
   };
 
   static contextTypes = {
-    screenWidth: PropTypes.number.isRequired,
     muiTheme: PropTypes.object.isRequired,
+  };
+
+  static propTypes = {
+    screenWidth: PropTypes.number.isRequired,
   };
 
   render() {
     let { children, location, actions } = this.props;
     let { open } = this.props.sidebarProps;
-    let { screenWidth } = this.context;
+    let { screenWidth } = this.props;
 
     const styles = getStyles(this.props, this.context);
 

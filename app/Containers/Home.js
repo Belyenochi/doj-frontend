@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Title from 'react-title-component';
+import Radium from 'radium';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -7,56 +8,44 @@ import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
 
 import Actions from '../Actions';
-import withWidth from '../utils/withWidth';
+import ProblemList from './ProblemList';
 
 function getStyles(props, context) {
-  const { screenWidth } = props;
-
-  const rightBlockSize = ((width) => {
-    if (width === 3) return '288px';
-    if (width === 2) return '256px';
-    if (width === 1) return '224px';
-    return '';
-  })(screenWidth);
+  const width = 768;
 
   const styles = {
     root: {
       position: 'relative',
-      padding: '20px',
-    },
-    paper: {
-      marginLeft: '10px',
-      marginRight: '10px',
+      padding: '10px',
+      display: 'flex',
+      justifyContent: 'center',
+      [`@media (max-width: ${width - 1}px)`]: {
+        flexDirection: 'column',
+      },
+      [`@media (min-width: ${width}px)`]: {
+        flexDirection: 'row',
+      },
     },
     center: {
-      marginBottom: screenWidth > 0 ? '' : '20px',
-      marginRight: screenWidth > 0 ? rightBlockSize : '',
+      flex: '1',
     },
     right: {
-      marginTop: screenWidth > 0 ? '' : '20px',
-      width: rightBlockSize,
-      float: screenWidth > 0 ? 'right' : '',
+      flex: 'none',
+      [`@media (min-width: ${width}px)`]: {
+        width: '256px',
+      },
     },
-    clear: {
-      clear: "both",
+    paper: {
+      margin: '10px',
+      // marginRight: '10px',
     },
   };
 
   return styles;
 }
 
-@withWidth({
-  widths: {
-    1: 768,
-    2: 992,
-    3: 1200
-  }
-})
+@Radium
 class Home extends Component {
-  static propTypes = {
-    screenWidth: PropTypes.number.isRequired,
-  };
-
   render() {
     const styles = getStyles(this.props, this.context);
 
@@ -89,8 +78,8 @@ class Home extends Component {
       <div>
         <Title render={(prev) => `Home · ${prev}`} />
         <div style={styles.root}>
-          {right}
           {center}
+          {right}
         </div>
         <br style={styles.clear} />
       </div>

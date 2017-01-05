@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Title from 'react-title-component';
+import { StyleRoot } from 'radium';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -84,15 +85,18 @@ class Layout extends Component {
     return (
       <div>
         <Title render="Diverse Online Judge" />
-        <div>
-          {sidebar}
-          <div style={styles.main}>
-            {header}
-            <div style={styles.content}>{children}</div>
-            <br style={styles.clear} />
-            <Footer />
+        {/*StyleRoot for Radium*/}
+        <StyleRoot>
+          <div>
+            {sidebar}
+            <div style={styles.main}>
+              {header}
+              <div style={styles.content}>{children}</div>
+              <br style={styles.clear} />
+              <Footer />
+            </div>
           </div>
-        </div>
+        </StyleRoot>
       </div>
     );
   };

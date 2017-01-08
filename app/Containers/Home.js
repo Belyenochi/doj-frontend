@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
 
 import Actions from '../Actions';
-import ProblemList from './ProblemList';
 
 function getStyles(props, context) {
   const width = 768;

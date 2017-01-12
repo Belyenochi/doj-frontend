@@ -1,54 +1,54 @@
-# acm.zucc.edu.cn
+# Diverse Online Judge - frontend
 
-An open-source Online Judge System designed for ZUCC ACM/ICPC Lab.
+The frontend of Diverse Online Judge System designed for ZUCC ACM/ICPC Lab.
 
-Post Scriptum: The old repository [*fateud.com*](https://github.com/ChouUn/fateud.com) is deprecated.
+Post Scriptum: The old repository [*acm.zucc.edu.cn*](https://github.com/ChouUn/acm.zucc.edu.cn) is deprecated.
 
 ## Prerequisites
 
-* frontend
-  * Babel, Lodash
+* General
+  * Babel
+  * Lodash
+* UI
   * React, React-Router
-  * Redux, React-Redux 
-  * Radium, Material-UI
-  * ACE, Markdown Plus, KaTeX
-* backend
-  * Node.js
-  * MySQL
-* judger
-  * Linux
-  * Docker
+  * Redux, React-Redux
+  * Material-UI
+  * Radium
+* Text Editor and Render
+  * ACE
+  * Markdown Plus
+  * KaTeX
 
 ## Installation
 
-### MySQL
-
-1. install MySQL
-
-  `$ sudo apt-get install mysql-server libmysqlclient-dev`
-
-2. create database
-
-  `$ mysql -u root -p`  
-  `mysql> create database fateud;`  
-  `mysql> quit`
-
 ### Node.js
 
-1. install Node.js
+1. Install Node.js  
 
-  `$ sudo apt-get install nodejs npm`
+[How can I update my nodeJS to the latest version?](http://askubuntu.com/questions/426750/how-can-i-update-my-nodejs-to-the-latest-version)  
 
-2. install package
+For instance, Node.js v6.x:
 
-  if Develop  
-  `$ sudo npm install`  
-  or Release  
-  `$ sudo npm install --production`
+```
+# Using Ubuntu
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
 
-3. start
+# Using Debian, as root
+curl -sL https://deb.nodesource.com/setup_6.x | bash -
+apt-get install -y nodejs
+```
 
-  if Develop  
-  `$ sudo npm watch`  
-  or Release  
-  `$ sudo npm build && sudo npm start`
+2. Install Packages
+
+if Develop  
+`$ sudo npm install`  
+or Release  
+`$ sudo npm install --production`
+
+3. Start
+
+if Develop  
+`$ sudo npm watch`  
+or Release  
+`$ sudo npm build && sudo npm start`

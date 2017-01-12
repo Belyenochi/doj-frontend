@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Radium from 'radium';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -12,11 +11,11 @@ import reducer from './Reducer';
 import theme from './styles/theme';
 import AppRoute from './AppRoute';
 
-// Link to Redux
-const store = createStore(reducer);
-
 // Helpers for debugging
 window.React = React;
+
+// Link to Redux
+const store = createStore(reducer);
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -30,6 +29,7 @@ let app = (
     </MuiThemeProvider>
   </Provider>
 );
+
 // Element from HTML
 let rootElement = document.getElementById('app');
 

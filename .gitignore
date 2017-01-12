@@ -42,7 +42,7 @@ bower_components
 .node_repl_history
 
 # Compiled files
-public/core
+build
 
 # WebStorm
-.idea/
+.idea

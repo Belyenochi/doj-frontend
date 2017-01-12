@@ -1,17 +1,16 @@
 const webpack = require('webpack');
 const path = require('path');
-const buildPath = path.resolve(__dirname, 'www');
+const buildPath = path.resolve(__dirname, 'build');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = {
 
   // Entry point to the project
   entry: [
-    'webpack/hot/dev-server',
     'babel-polyfill',
     path.resolve(__dirname, 'app/App.js'),
   ],
   // Output file config
-  devtool: 'eval',
   output: {
     path: buildPath, // Path of output file
     filename: 'bundle.js', // Name of output file
@@ -19,20 +18,35 @@ const config = {
 
   // Configuration for dev server
   devServer: {
-    contentBase: 'www',
-    devtool: 'eval',
-    hot: true,
-    inline: true,
-    port: 4000,
+    contentBase: 'build',
     // Required for webpack-dev-server.
     outputPath: buildPath,
   },
 
   plugins: [
-    // Allows for sync with browser while developing (like BrowserSync)
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+      output: {
+        comments: false,
+      },
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
+    }),
     // Allows error warninggs but does not stop compiling. Will remove when eslint is added
     new webpack.NoErrorsPlugin(),
+    // Transfer Files
+    new CopyWebpackPlugin([
+      {from: 'www/css', to: 'css'},
+      {from: 'www/font', to: 'font'},
+      {from: 'www/index.html'},
+    ]),
   ],
 
   module: {

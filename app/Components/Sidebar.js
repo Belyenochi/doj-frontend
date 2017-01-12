@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
 
-import { Drawer, Subheader, List, ListItem, makeSelectable } from 'material-ui';
+import Drawer from 'material-ui/Drawer';
+import Subheader from 'material-ui/Subheader';
+import { List, ListItem, makeSelectable } from 'material-ui/List';
 import IconHome from 'material-ui/svg-icons/action/home';
 import IconList from 'material-ui/svg-icons/editor/format-list-numbered';
 import Filter1 from 'material-ui/svg-icons/image/filter-1';

@@ -1,7 +1,7 @@
 {
   "name": "doj-frontend",
   "description": "The frontend of Diverse Online Judge System designed for ZUCC ACM/ICPC Lab.",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "private": true,
   "main": "index.js",
   "scripts": {

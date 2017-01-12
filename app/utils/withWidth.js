@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EventListener from 'react-event-listener';
+
 import _ from 'lodash';
 
 /**

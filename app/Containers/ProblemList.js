@@ -8,7 +8,7 @@ import {
   TableHeaderColumn,
   TableRow,
   TableRowColumn
-} from 'material-ui';
+} from 'material-ui/Table';
 
 const tableData = [
   {

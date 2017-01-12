@@ -5,7 +5,7 @@ import Radium from 'radium';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { Paper } from 'material-ui';
+import Paper from 'material-ui/Paper';
 
 import Actions from '../Actions';
 

@@ -1,17 +1,16 @@
 import { fade } from 'material-ui/utils/colorManipulator';
-import { spacing, colors } from 'material-ui/styles';
-
-const {
+import spacing from 'material-ui/styles/spacing';
+import {
   pinkA200,
   grey100, grey200, grey300, grey400, grey500,
   indigo300, indigo500,
   white, darkBlack, fullBlack,
-} = colors;
+} from 'material-ui/styles/colors';
 
 /**
- *  Light Theme is the default theme used in material-ui. It is guaranteed to
- *  have all theme variables needed for every component. Variables not defined
- *  in a custom theme will default to these values.
+ *  Light Theme is the default theme used in material-ui.
+ *  It is guaranteed to have all theme variables needed for every component.
+ *  Variables not definedn in a custom theme will default to these values.
  */
 export default {
   spacing: spacing,

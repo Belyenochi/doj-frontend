@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Title from 'react-title-component';
+
 import { StyleRoot } from 'radium';
 
 import { bindActionCreators } from 'redux';

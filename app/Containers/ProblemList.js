@@ -1,16 +1,58 @@
 import React, { Component } from 'react';
 import Title from 'react-title-component';
 
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn
-} from 'material-ui/Table';
+import EnhancedTable from '../Components/EnhancedTable';
 
-const tableData = [
+const cols = [
+  {
+    id: 'id',
+    value: '#',
+    style: {
+      width: 80,
+      textAlign: 'center',
+    },
+  },
+  {
+    id: 'title',
+    value: 'Title',
+  },
+  {
+    id: 'ac/sub',
+    value: 'Accepted / Submit',
+    gene: row => row.ac + ' / ' + row.sub,
+    style: {
+      width: 160,
+      textAlign: 'center',
+    },
+  },
+  {
+    id: 'acrate',
+    value: 'AC Rate',
+    gene: row => (100. * row.ac / Math.max(row.sub, 1)).toFixed(2) + '%',
+    style: {
+      width: 100,
+      textAlign: 'right',
+    },
+  },
+  {
+    id: 'voj',
+    value: 'VOJ',
+    style: {
+      width: 80,
+      textAlign: 'center',
+    },
+  },
+  {
+    id: 'vid',
+    value: 'VID',
+    style: {
+      width: 80,
+      textAlign: 'center',
+    },
+  },
+];
+
+const rows = [
   {
     id: 1000,
     title: 'A + B Problem',
@@ -30,7 +72,7 @@ const tableData = [
   {
     id: 1002,
     title: '斐波那契数列',
-    ac: 76,
+    ac: 962,
     sub: 962,
     voj: 'doj',
     vid: 1002,
@@ -54,59 +96,14 @@ const tableData = [
 ];
 
 class ProblemList extends Component {
-  state = {
-    showCheckboxes: true,
-    stripedRows: true,
-    showRowHover: true,
-  };
-
   render() {
     return (
       <div>
         <Title render={(prev) => `Problem · ${prev}`} />
-        <Table
-          selectable={this.state.showCheckboxes}
-        >
-          <TableHeader
-            displaySelectAll={this.state.showCheckboxes}
-            adjustForCheckbox={this.state.showCheckboxes}
-            enableSelectAll={this.state.showCheckboxes}
-          >
-            <TableRow>
-              <TableHeaderColumn>ID</TableHeaderColumn>
-              <TableHeaderColumn>Title</TableHeaderColumn>
-              <TableHeaderColumn>Accepted / Submit</TableHeaderColumn>
-              <TableHeaderColumn>AC Rate</TableHeaderColumn>
-              <TableHeaderColumn>VOJ</TableHeaderColumn>
-              <TableHeaderColumn>VID</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody
-            displayRowCheckbox={this.state.showCheckboxes}
-            showRowHover={this.state.showRowHover}
-            stripedRows={this.state.stripedRows}
-          >
-            {tableData.map((row, index) => {
-              let res = {};
-              res.id = row.id;
-              res.title = row.title;
-              res.aps = row.ac + ' / ' + row.sub;
-              res.rate = (100. * row.ac / Math.max(row.sub, 1)).toFixed(2) + '%';
-              res.voj = row.voj;
-              res.vid = row.vid;
-              return (
-                <TableRow key={res.id}>
-                  <TableRowColumn>{res.id}</TableRowColumn>
-                  <TableRowColumn>{res.title}</TableRowColumn>
-                  <TableRowColumn>{res.aps}</TableRowColumn>
-                  <TableRowColumn>{res.rate}</TableRowColumn>
-                  <TableRowColumn>{res.voj}</TableRowColumn>
-                  <TableRowColumn>{res.vid}</TableRowColumn>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
+        <EnhancedTable
+          cols={cols}
+          rows={rows}
+        />
       </div>
     );
   };

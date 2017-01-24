@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 
 import Layout from './Containers/Layout';
 import Home from './Containers/Home';
@@ -10,17 +10,12 @@ import ProblemList from './Containers/ProblemList';
  * Routes are used to declare your view hierarchy.
  */
 const AppRoute = (
-  <Router
-    onUpdate={() => window.scrollTo(0, 0)}
-    history={browserHistory}
-  >
-    <Route path="/" component={Layout}>
-      <IndexRoute component={Home} />
-      <Route path="pl" component={ProblemList} />
-      <Route path="pl/l" component={ProblemList} />
-      <Route path="pl/r" component={ProblemList} />
-    </Route>
-  </Router>
+  <Route path="/" component={Layout}>
+    <IndexRoute component={Home} />
+    <Route path="pl" component={ProblemList} />
+    <Route path="pl/l" component={ProblemList} />
+    <Route path="pl/r" component={ProblemList} />
+  </Route>
 );
 
 export default AppRoute;

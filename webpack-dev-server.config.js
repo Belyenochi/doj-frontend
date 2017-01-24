@@ -8,7 +8,7 @@ const config = {
   entry: [
     'webpack/hot/dev-server',
     'babel-polyfill',
-    path.resolve(__dirname, 'app/App.js'),
+    path.resolve(__dirname, 'app/App.dev.js'),
   ],
   // Output file config
   devtool: 'eval',

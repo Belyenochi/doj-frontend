@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { Router, browserHistory } from 'react-router';
+import { Router, useRouterHistory } from 'react-router';
+import { createHashHistory } from 'history';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -25,7 +26,7 @@ injectTapEventPlugin();
 const AppRouter = (
   <Router
     onUpdate={() => window.scrollTo(0, 0)}
-    history={browserHistory}
+    history={useRouterHistory(createHashHistory)()}
   >
     {AppRoute}
   </Router>

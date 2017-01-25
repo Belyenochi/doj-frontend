@@ -6,48 +6,51 @@ import EnhancedTable from '../Components/EnhancedTable';
 const cols = [
   {
     id: 'id',
-    value: '#',
+    label: '#',
     style: {
-      width: 80,
       textAlign: 'center',
+      width: '60px',
     },
   },
   {
     id: 'title',
-    value: 'Title',
+    label: 'Title',
+    style: {
+      textAlign: 'left',
+    },
   },
   {
     id: 'ac/sub',
-    value: 'Accepted / Submit',
+    label: 'AC / Submit',
     gene: row => row.ac + ' / ' + row.sub,
     style: {
-      width: 160,
       textAlign: 'center',
+      width: '90px',
     },
   },
   {
     id: 'acrate',
-    value: 'AC Rate',
+    label: 'AC Rate',
     gene: row => (100. * row.ac / Math.max(row.sub, 1)).toFixed(2) + '%',
     style: {
-      width: 100,
       textAlign: 'right',
+      width: '80px',
     },
   },
   {
     id: 'voj',
-    value: 'VOJ',
+    label: 'VOJ',
     style: {
-      width: 80,
       textAlign: 'center',
+      width: '60px',
     },
   },
   {
     id: 'vid',
-    value: 'VID',
+    label: 'VID',
     style: {
-      width: 80,
       textAlign: 'center',
+      width: '60px',
     },
   },
 ];
@@ -103,6 +106,10 @@ class ProblemList extends Component {
         <EnhancedTable
           cols={cols}
           rows={rows}
+          colStyle={{
+            paddingLeft: '12px',
+            paddingRight: '12px',
+          }}
         />
       </div>
     );

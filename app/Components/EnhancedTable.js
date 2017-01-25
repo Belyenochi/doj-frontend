@@ -14,20 +14,23 @@ import {
 function getStyles(props, context) {
   const styles = {
     root: {},
+    header: {},
+    body: {},
     row: {},
+    col: {},
   };
 
   return styles;
 }
 
-function getHeaders(rowStyle, cols) {
+function getHeaders(rowStyle, colStyle, cols) {
   const result = _.reduce(cols, function(result, col) {
     const elem = (
       <TableHeaderColumn
-        key={col.value}
-        style={col.style}
+        key={col.label}
+        style={Object.assign({}, colStyle, col.style)}
       >
-        {col.value}
+        {col.label}
       </TableHeaderColumn>
     );
     result.push(elem);
@@ -42,14 +45,14 @@ function getHeaders(rowStyle, cols) {
   );
 }
 
-function getBodies(rowStyle, cols, rows) {
+function getBodies(rowStyle, colStyle, cols, rows) {
   const result = _.reduce(rows, function(result, row) {
 
     const terms = _.reduce(cols, function(result, col) {
       const elem = (
         <TableRowColumn
-          key={col.value}
-          style={col.style}
+          key={col.label}
+          style={Object.assign({}, colStyle, col.style)}
         >
           {typeof col.gene === 'function' ? col.gene(row) : row[col.id]}
         </TableRowColumn>
@@ -80,27 +83,30 @@ class EnhancedTable extends Component {
     cols: PropTypes.array.isRequired,
     rows: PropTypes.array.isRequired,
     style: PropTypes.object,
+    headerStyle: PropTypes.object,
+    bodyStyle: PropTypes.object,
     rowStyle: PropTypes.object,
+    colStyle: PropTypes.object,
   };
 
   render() {
     const styles = getStyles(this.props, this.context);
     const rootStyle = Object.assign({}, styles.root, this.props.style);
+    const headerStyle = Object.assign({}, styles.header, this.props.headerStyle);
+    const bodyStyle = Object.assign({}, styles.body, this.props.bodyStyle);
     const rowStyle = Object.assign({}, styles.row, this.props.rowStyle);
+    const colStyle = Object.assign({}, styles.col, this.props.colStyle);
 
     const { cols, rows } = this.props;
-    const headers = getHeaders(rowStyle, cols);
-    const bodies = getBodies(rowStyle, cols, rows);
-
-    styles.root = Object.assign(styles.root, );
-    styles.row = Object.assign(styles.row, props.rowStyle);
+    const headers = getHeaders(rowStyle, colStyle, cols);
+    const bodies = getBodies(rowStyle, colStyle, cols, rows);
 
     return (
       <Table style={rootStyle}>
-        <TableHeader>
+        <TableHeader style={headerStyle}>
           {headers}
         </TableHeader>
-        <TableBody>
+        <TableBody style={bodyStyle}>
           {bodies}
         </TableBody>
       </Table>

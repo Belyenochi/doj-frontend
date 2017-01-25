@@ -18,34 +18,35 @@ function getStyles(props, context) {
 
 class Header extends Component {
   static propTypes = {
+    onClick: PropTypes.func,
     showIcon: PropTypes.bool,
     style: PropTypes.object,
-    onClick: PropTypes.func,
+    title: PropTypes.string,
   };
 
   render() {
     const styles = getStyles(this.props, this.context);
 
     const {
+      onClick,
       showIcon,
       style,
-      onClick,
+      title,
       ...other,
     } = this.props;
 
     const iconElementLeft = (
-      <IconButton
-        onClick={onClick}
-      >
+      <IconButton onClick={onClick}>
         <Menu color={white}>apps</Menu>
       </IconButton>
     );
 
     return (
       <AppBar
-        style={Object.assign({}, styles.root, style)}
-        showMenuIconButton={showIcon}
         iconElementLeft={iconElementLeft}
+        showMenuIconButton={showIcon}
+        style={Object.assign({}, styles.root, style)}
+        title={showIcon ? title : ''}
         zDepth={0}
         {...other}
       />

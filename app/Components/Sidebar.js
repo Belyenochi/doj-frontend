@@ -32,39 +32,72 @@ function getStyles(props, context) {
 
 class Sidebar extends Component {
   static propTypes = {
-    open: PropTypes.bool,
     docked: PropTypes.bool,
+    listStyle: PropTypes.object,
+    logoStyle: PropTypes.object,
+    onRequestChange: PropTypes.func,
+    open: PropTypes.bool,
+    pathname: PropTypes.string,
     style: PropTypes.object,
   };
 
   static contextTypes = {
-    router: PropTypes.object.isRequired,
     muiTheme: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired,
   };
 
   render() {
-    const { open, docked, style, actions, pathname } = this.props;
-    const { router } = this.context;
+    const {
+      docked,
+      listStyle,
+      logoStyle,
+      onRequestChange,
+      open,
+      pathname,
+      style,
+      ...other
+    } = this.props;
 
     const styles = getStyles(this.props, this.context);
 
+    const router = this.context.router;
+
+    const nestedItems = [
+      <ListItem
+        leftIcon={<Filter1 />}
+        primaryText="All Problem"
+        value="/pl"
+      />,
+      <ListItem
+        leftIcon={<Filter2 />}
+        primaryText="Local Problem"
+        value="/pl/l"
+      />,
+      <ListItem
+        leftIcon={<Filter3 />}
+        primaryText="Remote Problem"
+        value="/pl/r"
+      />,
+    ];
+
     return (
       <Drawer
-        open={open}
         docked={docked}
+        onRequestChange={onRequestChange}
+        open={open}
         style={Object.assign({}, styles.root, style)}
-        onRequestChange={(open) => actions.switchSidebar(open)}
+        {...other}
       >
-        <Link to="/" activeStyle={{ textDecoration: 'none' }}>
-          <div style={styles.logo}>Diverse OJ</div>
+        <Link activeStyle={{ textDecoration: 'none' }} to="/">
+          <div style={Object.assign({}, styles.logo, logoStyle)}>Diverse OJ</div>
         </Link>
         <SelectableList
-          value={pathname}
           onChange={(event, value) => {
             router.push(value);
-            actions.closeSidebar();
+            onRequestChange(false);
           }}
-          style={styles.list}
+          style={Object.assign({}, styles.list, listStyle)}
+          value={pathname}
         >
           <Subheader>Person</Subheader>
           <Subheader>Common</Subheader>
@@ -74,26 +107,10 @@ class Sidebar extends Component {
             value="/"
           />
           <ListItem
+            nestedItems={nestedItems}
             leftIcon={<IconList />}
             primaryText="Problem"
             primaryTogglesNestedList={true}
-            nestedItems={[
-              <ListItem
-                leftIcon={<Filter1 />}
-                primaryText="All Problem"
-                value="/pl"
-              />,
-              <ListItem
-                leftIcon={<Filter2 />}
-                primaryText="Local Problem"
-                value="/pl/l"
-              />,
-              <ListItem
-                leftIcon={<Filter3 />}
-                primaryText="Remote Problem"
-                value="/pl/r"
-              />,
-            ]}
           />
         </SelectableList>
       </Drawer>

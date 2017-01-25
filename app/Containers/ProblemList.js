@@ -105,11 +105,11 @@ class ProblemList extends Component {
         <Title render={(prev) => `Problem · ${prev}`} />
         <EnhancedTable
           cols={cols}
-          rows={rows}
           colStyle={{
             paddingLeft: '12px',
             paddingRight: '12px',
           }}
+          rows={rows}
         />
       </div>
     );

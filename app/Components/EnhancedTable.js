@@ -14,10 +14,10 @@ import {
 function getStyles(props, context) {
   const styles = {
     root: {},
-    header: {},
     body: {},
-    row: {},
     col: {},
+    header: {},
+    row: {},
   };
 
   return styles;
@@ -80,35 +80,45 @@ function getBodies(rowStyle, colStyle, cols, rows) {
 
 class EnhancedTable extends Component {
   static propTypes = {
+    bodyStyle: PropTypes.object,
+    colStyle: PropTypes.object,
     cols: PropTypes.array.isRequired,
+    headerStyle: PropTypes.object,
+    rowStyle: PropTypes.object,
     rows: PropTypes.array.isRequired,
     style: PropTypes.object,
-    headerStyle: PropTypes.object,
-    bodyStyle: PropTypes.object,
-    rowStyle: PropTypes.object,
-    colStyle: PropTypes.object,
   };
 
   render() {
-    const styles = getStyles(this.props, this.context);
-    const rootStyle = Object.assign({}, styles.root, this.props.style);
-    const headerStyle = Object.assign({}, styles.header, this.props.headerStyle);
-    const bodyStyle = Object.assign({}, styles.body, this.props.bodyStyle);
-    const rowStyle = Object.assign({}, styles.row, this.props.rowStyle);
-    const colStyle = Object.assign({}, styles.col, this.props.colStyle);
+    const {
+      bodyStyle,
+      colStyle,
+      cols,
+      headerStyle,
+      rowStyle,
+      rows,
+      style,
+      ...other
+    } = this.props;
 
-    const { cols, rows } = this.props;
-    const headers = getHeaders(rowStyle, colStyle, cols);
-    const bodies = getBodies(rowStyle, colStyle, cols, rows);
+    const styles = getStyles(this.props, this.context);
+
+    const lastBodyStyle = Object.assign({}, styles.body, bodyStyle);
+    const lastColStyle = Object.assign({}, styles.col, colStyle);
+    const lastHeaderStyle = Object.assign({}, styles.header, headerStyle);
+    const lastRowStyle = Object.assign({}, styles.row, rowStyle);
+    const lastRootStyle = Object.assign({}, styles.root, style);
+
+    const headers = getHeaders(lastRowStyle, lastColStyle, cols);
+    const bodies = getBodies(lastRowStyle, lastColStyle, cols, rows);
 
     return (
-      <Table style={rootStyle}>
-        <TableHeader style={headerStyle}>
-          {headers}
-        </TableHeader>
-        <TableBody style={bodyStyle}>
-          {bodies}
-        </TableBody>
+      <Table
+        style={lastRootStyle}
+        {...other}
+      >
+        <TableHeader style={lastHeaderStyle}>{headers}</TableHeader>
+        <TableBody style={lastBodyStyle}>{bodies}</TableBody>
       </Table>
     );
   }

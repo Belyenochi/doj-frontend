@@ -27,9 +27,6 @@ function getStyles(props, context) {
     main: {
       marginLeft: screenWidth >= 2 ? '256px' : '0px',
     },
-    clear: {
-      clear: 'both',
-    },
   };
 
   return styles;
@@ -50,25 +47,38 @@ class Layout extends Component {
 
   static contextTypes = {
     muiTheme: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired,
   };
 
   static propTypes = {
+    actions: PropTypes.object,
+    children: PropTypes.node,
+    location: PropTypes.object,
     screenWidth: PropTypes.number.isRequired,
   };
 
   render() {
-    let { children, location, actions } = this.props;
-    let { open } = this.props.sidebarProps;
-    let { screenWidth } = this.props;
+    const {
+      actions,
+      children,
+      location,
+      screenWidth,
+    } = this.props;
 
     const styles = getStyles(this.props, this.context);
+
+    const open = this.props.sidebarProps.open;
+    const router = this.context.router;
+    const title =
+      router.isActive('/pl') ? 'Problem List' :
+      router.isActive('/') ? 'Home' : '';
 
     const sidebar = (
       (match => (
         <Sidebar
-          open={match || open}
           docked={match}
-          actions={actions}
+          onRequestChange={(status) => actions.switchSidebar(status)}
+          open={match || open}
           pathname={location.pathname}
         />
       ))(screenWidth >= 2)
@@ -77,8 +87,9 @@ class Layout extends Component {
     const header = (
       (match => (
         <Header
-          showIcon={!match}
           onClick={() => actions.openSidebar()}
+          showIcon={!match}
+          title={title}
         />
       ))(screenWidth >= 2)
     );
@@ -93,7 +104,6 @@ class Layout extends Component {
             <div style={styles.main}>
               {header}
               <div style={styles.content}>{children}</div>
-              <br style={styles.clear} />
               <Footer />
             </div>
           </div>

@@ -78,7 +78,7 @@ class Layout extends Component {
       (match => (
         <Header
           showIcon={!match}
-          actions={actions}
+          onClick={() => actions.openSidebar()}
         />
       ))(screenWidth >= 2)
     );

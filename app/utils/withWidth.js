@@ -21,6 +21,10 @@ import _ from 'lodash';
 export default function withWidth(options = {}) {
   const {
     /**
+     * the interval of checking whether it resize
+     */
+    resizeInterval = 1000 / 60,
+    /**
      * The 'widths' is a set of [key, value],
      * both of key and value should be incremental.
      * The key means the width level of screen,
@@ -34,7 +38,6 @@ export default function withWidth(options = {}) {
      * }
      */
     widths,
-    resizeInterval = 1000 / 60,
   } = options;
 
   return (RealComponent) => {
@@ -86,6 +89,10 @@ export default function withWidth(options = {}) {
       }
 
       render() {
+        const {
+          ...other
+        } = this.props;
+
         return (
           <EventListener
             target={window}
@@ -93,7 +100,7 @@ export default function withWidth(options = {}) {
           >
             <RealComponent
               screenWidth={this.state.width}
-              {...this.props}
+              {...other}
             />
           </EventListener>
         );

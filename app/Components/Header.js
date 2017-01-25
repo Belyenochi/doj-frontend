@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import EventListener from 'react-event-listener';
 
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
@@ -17,16 +18,23 @@ function getStyles(props, context) {
 }
 
 class Header extends Component {
-  static propTypes = {
-    onClick: PropTypes.func,
-    showIcon: PropTypes.bool,
-    style: PropTypes.object,
-    title: PropTypes.string,
+  state = {
+    zDepth: 0,
   };
 
-  render() {
-    const styles = getStyles(this.props, this.context);
+  handleScroll = () => {
+    this.setState({
+      zDepth: window.scrollY ? 2 : 0,
+    });
+  };
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props !== nextProps) return true;
+    if (this.state.zDepth !== nextState.zDepth) return true;
+    return false;
+  }
+
+  render() {
     const {
       onClick,
       showIcon,
@@ -35,6 +43,12 @@ class Header extends Component {
       ...other,
     } = this.props;
 
+    const {
+      zDepth,
+    } = this.state;
+
+    const styles = getStyles(this.props, this.context);
+
     const iconElementLeft = (
       <IconButton onClick={onClick}>
         <Menu color={white}>apps</Menu>
@@ -42,15 +56,29 @@ class Header extends Component {
     );
 
     return (
-      <AppBar
-        iconElementLeft={iconElementLeft}
-        showMenuIconButton={showIcon}
-        style={Object.assign({}, styles.root, style)}
-        title={showIcon ? title : ''}
-        zDepth={0}
-        {...other}
-      />
+      <div>
+        <EventListener
+          target={window}
+          onScroll={this.handleScroll}
+        >
+        </EventListener>
+        <AppBar
+          iconElementLeft={iconElementLeft}
+          showMenuIconButton={showIcon}
+          style={Object.assign({}, styles.root, style)}
+          title={showIcon ? title : ''}
+          zDepth={zDepth}
+          {...other}
+        />
+      </div>
     );
+  };
+
+  static propTypes = {
+    onClick: PropTypes.func,
+    showIcon: PropTypes.bool,
+    style: PropTypes.object,
+    title: PropTypes.string,
   };
 }
 

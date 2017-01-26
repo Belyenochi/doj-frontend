@@ -3,13 +3,15 @@ import Title from 'react-title-component';
 
 import EnhancedTable from '../Components/EnhancedTable';
 
+import withWidth from '../utils/withWidth';
+
 const cols = [
   {
     id: 'id',
     label: '#',
     style: {
       textAlign: 'center',
-      width: '60px',
+      width: '50px',
     },
   },
   {
@@ -17,6 +19,14 @@ const cols = [
     label: 'Title',
     style: {
       textAlign: 'left',
+    },
+  },
+  {
+    id: 'ac',
+    label: 'AC',
+    style: {
+      textAlign: 'center',
+      width: '60px',
     },
   },
   {
@@ -34,7 +44,7 @@ const cols = [
     gene: row => (100. * row.ac / Math.max(row.sub, 1)).toFixed(2) + '%',
     style: {
       textAlign: 'right',
-      width: '80px',
+      width: '70px',
     },
   },
   {
@@ -42,7 +52,7 @@ const cols = [
     label: 'VOJ',
     style: {
       textAlign: 'center',
-      width: '60px',
+      width: '50px',
     },
   },
   {
@@ -50,7 +60,7 @@ const cols = [
     label: 'VID',
     style: {
       textAlign: 'center',
-      width: '60px',
+      width: '50px',
     },
   },
 ];
@@ -61,7 +71,7 @@ const rows = [
     title: 'A + B Problem',
     ac: 560,
     sub: 814,
-    voj: 'doj',
+    voj: 'zucc',
     vid: 1000,
   },
   {
@@ -69,7 +79,7 @@ const rows = [
     title: '鸡兔同笼',
     ac: 446,
     sub: 1021,
-    voj: 'doj',
+    voj: 'zucc',
     vid: 1001,
   },
   {
@@ -77,7 +87,7 @@ const rows = [
     title: '斐波那契数列',
     ac: 962,
     sub: 962,
-    voj: 'doj',
+    voj: 'zucc',
     vid: 1002,
   },
   {
@@ -85,7 +95,7 @@ const rows = [
     title: '打印螺旋矩阵',
     ac: 127,
     sub: 385,
-    voj: 'doj',
+    voj: 'zucc',
     vid: 1003,
   },
   {
@@ -93,22 +103,38 @@ const rows = [
     title: 'No Brainer',
     ac: 177,
     sub: 229,
-    voj: 'doj',
+    voj: 'zucc',
     vid: 1004,
   },
 ];
 
+@withWidth({
+  widths: {
+    1: 375,
+    2: 425,
+    3: 512,
+    4: 768,
+  }
+})
 class ProblemList extends Component {
   render() {
+    const { screenWidth } = this.props;
+
     return (
       <div>
         <Title render={(prev) => `Problem · ${prev}`} />
         <EnhancedTable
           cols={cols}
           colStyle={{
-            paddingLeft: '12px',
-            paddingRight: '12px',
+            paddingLeft: '8px',
+            paddingRight: '8px',
           }}
+          hidden={
+            screenWidth == 0 ? ['ac/sub', 'acrate', 'voj', 'vid'] :
+            screenWidth == 1 ? ['ac', 'acrate', 'voj', 'vid'] :
+            screenWidth == 2 ? ['ac/sub', 'voj', 'vid'] :
+            screenWidth == 3 ? ['ac/sub', 'voj', 'vid'] : ['ac']
+          }
           rows={rows}
         />
       </div>

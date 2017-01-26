@@ -23,70 +23,31 @@ function getStyles(props, context) {
   return styles;
 }
 
-function getHeaders(rowStyle, colStyle, cols) {
-  const result = _.reduce(cols, function (result, col) {
-    const elem = (
-      <TableHeaderColumn
-        key={col.label}
-        style={Object.assign({}, colStyle, col.style)}
-      >
-        {col.label}
-      </TableHeaderColumn>
-    );
-    result.push(elem);
-
-    return result;
-  }, []);
-
-  return (
-    <TableRow style={rowStyle}>
-      {result}
-    </TableRow>
-  );
-}
-
-function getBodies(rowStyle, colStyle, cols, rows) {
-  const result = _.reduce(rows, function (result, row) {
-
-    const terms = _.reduce(cols, function (result, col) {
-      const elem = (
-        <TableRowColumn
-          key={col.label}
-          style={Object.assign({}, colStyle, col.style)}
-        >
-          {typeof col.gene === 'function' ? col.gene(row) : row[col.id]}
-        </TableRowColumn>
-      );
-      result.push(elem);
-
-      return result;
-    }, []);
-
-    const elem = (
-      <TableRow
-        key={row.id}
-        style={rowStyle}
-      >
-        {terms}
-      </TableRow>
-    );
-    result.push(elem);
-
-    return result;
-  }, []);
-
-  return result;
-}
-
 class EnhancedTable extends Component {
   static propTypes = {
     bodyStyle: PropTypes.object,
     colStyle: PropTypes.object,
     cols: PropTypes.array.isRequired,
+    enableSelectAll: PropTypes.bool,
     headerStyle: PropTypes.object,
+    hidden: PropTypes.array,
+    multiSelectable: PropTypes.bool,
     rowStyle: PropTypes.object,
     rows: PropTypes.array.isRequired,
+    selectable: PropTypes.bool,
+    showCheckboxes: PropTypes.bool,
+    showRowHover: PropTypes.bool,
+    stripedRows: PropTypes.bool,
     style: PropTypes.object,
+  };
+
+  static defaultProps = {
+    enableSelectAll: false,
+    multiSelectable: false,
+    selectable: false,
+    showCheckboxes: false,
+    showRowHover: false,
+    stripedRows: false,
   };
 
   render() {
@@ -94,31 +55,92 @@ class EnhancedTable extends Component {
       bodyStyle,
       colStyle,
       cols,
+      enableSelectAll,
       headerStyle,
+      hidden,
+      multiSelectable,
       rowStyle,
       rows,
+      selectable,
+      showCheckboxes,
+      showRowHover,
+      stripedRows,
       style,
       ...other
     } = this.props;
 
     const styles = getStyles(this.props, this.context);
 
-    const lastRootStyle = Object.assign({}, styles.root, style);
-    const lastBodyStyle = Object.assign({}, styles.body, bodyStyle);
-    const lastColStyle = Object.assign({}, styles.col, colStyle);
-    const lastHeaderStyle = Object.assign({}, styles.header, headerStyle);
-    const lastRowStyle = Object.assign({}, styles.row, rowStyle);
+    const mixinRootStyle = Object.assign({}, styles.root, style);
+    const mixinBodyStyle = Object.assign({}, styles.body, bodyStyle);
+    const mixinColStyle = Object.assign({}, styles.col, colStyle);
+    const mixinHeaderStyle = Object.assign({}, styles.header, headerStyle);
+    const mixinRowStyle = Object.assign({}, styles.row, rowStyle);
 
-    const headers = getHeaders(lastRowStyle, lastColStyle, cols);
-    const bodies = getBodies(lastRowStyle, lastColStyle, cols, rows);
+    const mixinCols = _
+      .chain(cols)
+      .filter((col) => !_.includes(hidden, col.id))
+      .map((col) => ({
+        gene: col.gene,
+        id: col.id,
+        label: col.label,
+        style: Object.assign({}, mixinColStyle, col.style),
+      }))
+      .value();
+
+    const mixinRows = _.map(rows, (row) =>
+      _.map(mixinCols, (col) => ({
+        label: typeof col.gene === 'function' ? col.gene(row) : row[col.id],
+        style: col.style,
+      }))
+    );
 
     return (
       <Table
-        style={lastRootStyle}
+        multiSelectable={multiSelectable}
+        selectable={selectable}
+        style={mixinRootStyle}
         {...other}
       >
-        <TableHeader style={lastHeaderStyle}>{headers}</TableHeader>
-        <TableBody style={lastBodyStyle}>{bodies}</TableBody>
+        <TableHeader
+          adjustForCheckbox={showCheckboxes}
+          displaySelectAll={showCheckboxes}
+          enableSelectAll={enableSelectAll}
+          style={mixinHeaderStyle}
+        >
+          <TableRow style={mixinRowStyle}>
+            {_.map(mixinCols, (col, index) => (
+              <TableHeaderColumn
+                key={index}
+                style={col.style}
+              >
+                {col.label}
+              </TableHeaderColumn>
+            ))}
+          </TableRow>
+        </TableHeader>
+        <TableBody
+          displayRowCheckbox={showCheckboxes}
+          showRowHover={showRowHover}
+          stripedRows={stripedRows}
+          style={mixinBodyStyle}
+        >
+          {_.map(mixinRows, (row, index) => (
+            <TableRow
+              key={index}
+              style={mixinRowStyle}
+            >
+              {_.map(row, (col, index) => (
+                <TableRowColumn
+                  key={index}
+                  style={col.style}
+                >
+                  {col.label}
+                </TableRowColumn>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
       </Table>
     );
   }

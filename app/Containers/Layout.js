@@ -52,7 +52,7 @@ class Layout extends Component {
   };
 
   static propTypes = {
-    actions: PropTypes.object,
+    actions: PropTypes.object.isRequired,
     children: PropTypes.node,
     location: PropTypes.object,
     screenWidth: PropTypes.number.isRequired,

@@ -5,6 +5,7 @@ function getStyles(props, context) {
 
   const styles = {
     root: {
+      padding: 12,
       backgroundColor: palette.accent3Color,
       textAlign: 'center',
     },

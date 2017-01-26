@@ -12,6 +12,7 @@ import Footer from '../Components/Footer';
 
 import Actions from '../Actions';
 import withWidth from '../utils/withWidth';
+import _ from "lodash";
 
 function getStyles(props, context) {
   const { screenWidth } = props;
@@ -69,9 +70,14 @@ class Layout extends Component {
 
     const open = this.props.sidebarProps.open;
     const router = this.context.router;
-    const title =
-      router.isActive('/pl') ? 'Problem List' :
-      router.isActive('/') ? 'Home' : '';
+    const title = _
+      .chain([
+        ['/pl', 'Problem List'],
+        ['/', 'Home'],
+      ])
+      .filter((value) => router.isActive(value[0]))
+      .head()
+      .value()[1];
 
     const sidebar = (
       (match => (

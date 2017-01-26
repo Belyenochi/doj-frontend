@@ -24,7 +24,7 @@ function getStyles(props, context) {
 }
 
 function getHeaders(rowStyle, colStyle, cols) {
-  const result = _.reduce(cols, function(result, col) {
+  const result = _.reduce(cols, function (result, col) {
     const elem = (
       <TableHeaderColumn
         key={col.label}
@@ -46,9 +46,9 @@ function getHeaders(rowStyle, colStyle, cols) {
 }
 
 function getBodies(rowStyle, colStyle, cols, rows) {
-  const result = _.reduce(rows, function(result, row) {
+  const result = _.reduce(rows, function (result, row) {
 
-    const terms = _.reduce(cols, function(result, col) {
+    const terms = _.reduce(cols, function (result, col) {
       const elem = (
         <TableRowColumn
           key={col.label}
@@ -103,11 +103,11 @@ class EnhancedTable extends Component {
 
     const styles = getStyles(this.props, this.context);
 
+    const lastRootStyle = Object.assign({}, styles.root, style);
     const lastBodyStyle = Object.assign({}, styles.body, bodyStyle);
     const lastColStyle = Object.assign({}, styles.col, colStyle);
     const lastHeaderStyle = Object.assign({}, styles.header, headerStyle);
     const lastRowStyle = Object.assign({}, styles.row, rowStyle);
-    const lastRootStyle = Object.assign({}, styles.root, style);
 
     const headers = getHeaders(lastRowStyle, lastColStyle, cols);
     const bodies = getBodies(lastRowStyle, lastColStyle, cols, rows);

@@ -10,14 +10,36 @@ import {
   TableRow,
   TableRowColumn
 } from 'material-ui/Table';
+import IconButton from 'material-ui/IconButton';
+import IconSortNone from 'material-ui/svg-icons/navigation/more-horiz';
+import IconSortDown from 'material-ui/svg-icons/navigation/arrow-drop-down';
+import IconSortUp from 'material-ui/svg-icons/navigation/arrow-drop-up';
 
 function getStyles(props, context) {
+  const tableHeaderColumn = context.muiTheme.tableHeaderColumn;
+  const iconFontSize = 16;
+  const iconButtonSize = 20;
+
   const styles = {
     root: {},
+    header: {},
     body: {},
     col: {},
-    header: {},
     row: {},
+    cell: {},
+    iconFont: {
+      width: iconFontSize,
+      height: iconFontSize,
+    },
+    iconButton: {
+      width: iconButtonSize,
+      height: iconButtonSize,
+      padding: (iconButtonSize - iconFontSize) / 2,
+
+      position: 'absolute',
+      right: 0,
+      top: (tableHeaderColumn.height - iconButtonSize) / 2,
+    },
   };
 
   return styles;
@@ -26,6 +48,7 @@ function getStyles(props, context) {
 class EnhancedTable extends Component {
   static propTypes = {
     bodyStyle: PropTypes.object,
+    cellStyle: PropTypes.object,
     colStyle: PropTypes.object,
     cols: PropTypes.array.isRequired,
     enableSelectAll: PropTypes.bool,
@@ -50,9 +73,38 @@ class EnhancedTable extends Component {
     stripedRows: false,
   };
 
+  static contextTypes = {
+    muiTheme: PropTypes.object.isRequired,
+  };
+
+  state = {
+    sortByIndex: 0,
+    sortReverse: false,
+  };
+
+  handleTouchTap = (index) => {
+    const {
+      sortByIndex,
+      sortReverse,
+    } = this.state;
+
+    if (sortByIndex !== index) {
+      this.setState({
+        sortByIndex: index,
+        sortReverse: false,
+      });
+    }
+    else {
+      this.setState({
+        sortReverse: !sortReverse
+      });
+    }
+  };
+
   render() {
     const {
       bodyStyle,
+      cellStyle,
       colStyle,
       cols,
       enableSelectAll,
@@ -69,31 +121,47 @@ class EnhancedTable extends Component {
       ...other
     } = this.props;
 
+    const {
+      sortByIndex,
+      sortReverse,
+    } = this.state;
+
     const styles = getStyles(this.props, this.context);
 
     const mixinRootStyle = Object.assign({}, styles.root, style);
+    const mixinHeaderStyle = Object.assign({}, styles.header, headerStyle);
     const mixinBodyStyle = Object.assign({}, styles.body, bodyStyle);
     const mixinColStyle = Object.assign({}, styles.col, colStyle);
-    const mixinHeaderStyle = Object.assign({}, styles.header, headerStyle);
     const mixinRowStyle = Object.assign({}, styles.row, rowStyle);
+    const mixinCellStyle = Object.assign({}, styles.cell, cellStyle);
 
     const mixinCols = _
       .chain(cols)
       .filter((col) => !_.includes(hidden, col.id))
       .map((col) => ({
-        gene: col.gene,
         id: col.id,
         label: col.label,
+        _style: col.style,
         style: Object.assign({}, mixinColStyle, col.style),
+        sort: col.sort,
+        gene: col.gene,
       }))
       .value();
 
-    const mixinRows = _.map(rows, (row) =>
-      _.map(mixinCols, (col) => ({
+    const mixinRows = _
+      .chain(rows)
+      .map((row) => _.map(mixinCols, (col) => ({
         label: typeof col.gene === 'function' ? col.gene(row) : row[col.id],
-        style: col.style,
-      }))
-    );
+        style: Object.assign({}, mixinCellStyle, col._style),
+        weight: typeof col.sort === 'function' ? col.sort(row) : row[col.id],
+      })))
+      .sortBy([row => (row[sortByIndex] && row[sortByIndex].weight)])
+      .tap(function (array) {
+        if (sortReverse) {
+          array.reverse();
+        }
+      })
+      .value();
 
     return (
       <Table
@@ -114,7 +182,17 @@ class EnhancedTable extends Component {
                 key={index}
                 style={col.style}
               >
-                {col.label}
+                {col.label + '　'}
+                <IconButton
+                  style={styles.iconButton}
+                  iconStyle={styles.iconFont}
+                  onTouchTap={() => this.handleTouchTap(index)}
+                >
+                  {
+                    sortByIndex !== index ? <IconSortNone /> :
+                    sortReverse === true ? <IconSortUp /> : <IconSortDown　/>
+                  }
+                </IconButton>
               </TableHeaderColumn>
             ))}
           </TableRow>

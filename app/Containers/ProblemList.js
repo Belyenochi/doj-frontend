@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Title from 'react-title-component';
 
 import EnhancedTable from '../Components/EnhancedTable';
@@ -31,8 +31,9 @@ const cols = [
   },
   {
     id: 'ac/sub',
-    label: 'AC / Submit',
+    label: 'AC / submit',
     gene: row => row.ac + ' / ' + row.sub,
+    sort: row => row.ac,
     style: {
       textAlign: 'center',
       width: '90px',
@@ -40,11 +41,12 @@ const cols = [
   },
   {
     id: 'acrate',
-    label: 'AC Rate',
+    label: 'AC rate',
     gene: row => (100. * row.ac / Math.max(row.sub, 1)).toFixed(2) + '%',
+    sort: row => 100. * row.ac / Math.max(row.sub, 1),
     style: {
       textAlign: 'right',
-      width: '70px',
+      width: '90px',
     },
   },
   {
@@ -117,13 +119,23 @@ const rows = [
   }
 })
 class ProblemList extends Component {
+  static propTypes = {
+    screenWidth: PropTypes.number.isRequired,
+  };
+
   render() {
-    const { screenWidth } = this.props;
+    const {
+      screenWidth,
+    } = this.props;
 
     return (
       <div>
         <Title render={(prev) => `Problem · ${prev}`} />
         <EnhancedTable
+          cellStyle={{
+            paddingLeft: '8px',
+            paddingRight: '8px',
+          }}
           cols={cols}
           colStyle={{
             paddingLeft: '8px',
@@ -136,6 +148,8 @@ class ProblemList extends Component {
             screenWidth == 3 ? ['ac/sub', 'voj', 'vid'] : ['ac']
           }
           rows={rows}
+          showRowHover={true}
+          stripedRows={true}
         />
       </div>
     );

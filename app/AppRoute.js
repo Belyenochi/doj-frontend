@@ -13,9 +13,10 @@ import ProblemList from './Containers/ProblemList';
 const AppRoute = (
   <Route path="/" component={Layout}>
     <IndexRoute component={Home} />
-    <Route path="pl" component={ProblemList} />
-    <Route path="pl/l" component={ProblemList} />
-    <Route path="pl/r" component={ProblemList} />
+    <Route path="pl" component={ProblemList}>
+      <Route path="l" component={ProblemList} />
+      <Route path="r" component={ProblemList} />
+    </Route>
     <Route path="p">
       <Route path=":pid" component={Problem} />
     </Route>

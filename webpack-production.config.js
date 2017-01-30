@@ -53,6 +53,10 @@ const config = {
           cacheDirectory: true,
         }
       },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
+      },
     ],
   },
 };

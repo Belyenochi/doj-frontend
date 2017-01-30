@@ -23,7 +23,7 @@ export default function withWidth(options = {}) {
     /**
      * the interval of checking whether it resize
      */
-    resizeInterval = 1000 / 60,
+    resizeInterval = 1000 / 24 * 2,
     /**
      * The 'widths' is a set of [key, value],
      * both of key and value should be incremental.

@@ -32,8 +32,15 @@ export default {
     clockCircleColor: fade(darkBlack, 0.07),
     shadowColor: fullBlack,
   },
+  tableHeaderColumn: {
+    height: 48,
+  },
   tableRow: {
     hoverColor: grey200,
     stripeColor: fade(grey200, 0.5),
+    height: 36,
+  },
+  tableRowColumn: {
+    height: 36,
   },
 };

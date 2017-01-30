@@ -46,7 +46,7 @@ const cols = [
     sort: row => 100. * row.ac / Math.max(row.sub, 1),
     style: {
       textAlign: 'right',
-      width: '90px',
+      width: '70px',
     },
   },
   {
@@ -136,11 +136,11 @@ class ProblemList extends Component {
             paddingLeft: '8px',
             paddingRight: '8px',
           }}
-          cols={cols}
           colStyle={{
             paddingLeft: '8px',
             paddingRight: '8px',
           }}
+          cols={cols}
           hidden={
             screenWidth == 0 ? ['ac/sub', 'acrate', 'voj', 'vid'] :
             screenWidth == 1 ? ['ac', 'acrate', 'voj', 'vid'] :

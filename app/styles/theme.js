@@ -14,7 +14,7 @@ import {
  */
 export default {
   spacing: spacing,
-  fontFamily: 'Roboto, sans-serif',
+  fontFamily: 'Roboto, arial, sans-serif',
   palette: {
     primary1Color: indigo300,
     primary2Color: indigo500,

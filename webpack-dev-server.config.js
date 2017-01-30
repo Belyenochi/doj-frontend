@@ -1,31 +1,22 @@
 const webpack = require('webpack');
 const path = require('path');
-const buildPath = path.resolve(__dirname, 'www');
 
 const config = {
-
   // Entry point to the project
   entry: [
     'webpack/hot/dev-server',
     'babel-polyfill',
     path.resolve(__dirname, 'app/App.dev.js'),
   ],
-  // Output file config
-  devtool: 'eval',
-  output: {
-    path: buildPath, // Path of output file
-    filename: 'bundle.js', // Name of output file
-  },
 
   // Configuration for dev server
   devServer: {
     contentBase: 'www',
-    devtool: 'eval',
+    host: '0.0.0.0',
+    port: 4000,
     hot: true,
     inline: true,
-    port: 4000,
-    // Required for webpack-dev-server.
-    outputPath: buildPath,
+    filename: 'bundle.js', // Name of output file
   },
 
   plugins: [
@@ -50,7 +41,6 @@ const config = {
       },
     ],
   },
-
 };
 
 module.exports = config;

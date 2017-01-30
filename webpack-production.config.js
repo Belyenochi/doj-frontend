@@ -4,23 +4,16 @@ const buildPath = path.resolve(__dirname, 'build');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = {
-
   // Entry point to the project
   entry: [
     'babel-polyfill',
     path.resolve(__dirname, 'app/App.js'),
   ],
+
   // Output file config
   output: {
     path: buildPath, // Path of output file
     filename: 'bundle.js', // Name of output file
-  },
-
-  // Configuration for dev server
-  devServer: {
-    contentBase: 'build',
-    // Required for webpack-dev-server.
-    outputPath: buildPath,
   },
 
   plugins: [
@@ -39,8 +32,6 @@ const config = {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-    // Allows error warninggs but does not stop compiling. Will remove when eslint is added
-    new webpack.NoErrorsPlugin(),
     // Transfer Files
     new CopyWebpackPlugin([
       {from: 'www/css', to: 'css'},
@@ -64,7 +55,6 @@ const config = {
       },
     ],
   },
-
 };
 
 module.exports = config;

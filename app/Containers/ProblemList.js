@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import Title from 'react-title-component';
 
 import EnhancedTable from '../Components/EnhancedTable';
@@ -20,6 +21,8 @@ const cols = [
     style: {
       textAlign: 'left',
     },
+    gene: row => (<Link to={`/p/${row.id}`}>{row.title}</Link>),
+    sort: row => row.title,
   },
   {
     id: 'ac',
@@ -32,22 +35,22 @@ const cols = [
   {
     id: 'ac/sub',
     label: 'AC / submit',
-    gene: row => row.ac + ' / ' + row.sub,
-    sort: row => row.ac,
     style: {
       textAlign: 'center',
       width: '90px',
     },
+    gene: row => row.ac + ' / ' + row.sub,
+    sort: row => row.ac,
   },
   {
     id: 'acrate',
     label: 'AC rate',
-    gene: row => (100. * row.ac / Math.max(row.sub, 1)).toFixed(2) + '%',
-    sort: row => 100. * row.ac / Math.max(row.sub, 1),
     style: {
       textAlign: 'right',
       width: '70px',
     },
+    gene: row => (100. * row.ac / Math.max(row.sub, 1)).toFixed(2) + '%',
+    sort: row => 100. * row.ac / Math.max(row.sub, 1),
   },
   {
     id: 'voj',
@@ -130,7 +133,7 @@ class ProblemList extends Component {
 
     return (
       <div>
-        <Title render={(prev) => `Problem · ${prev}`} />
+        <Title render={(prev) => `Problem List · ${prev}`} />
         <EnhancedTable
           cellStyle={{
             paddingLeft: '8px',

@@ -3,6 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 
 import Layout from './Containers/Layout';
 import Home from './Containers/Home';
+import Problem from './Containers/Problem';
 import ProblemList from './Containers/ProblemList';
 
 /**
@@ -15,6 +16,7 @@ const AppRoute = (
     <Route path="pl" component={ProblemList} />
     <Route path="pl/l" component={ProblemList} />
     <Route path="pl/r" component={ProblemList} />
+    <Route path="p/:pid" component={Problem} />
   </Route>
 );
 

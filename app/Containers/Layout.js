@@ -70,9 +70,11 @@ class Layout extends Component {
 
     const open = this.props.sidebarProps.open;
     const router = this.context.router;
+
     const title = _
       .chain([
         ['/pl', 'Problem List'],
+        ['/p', 'Problem'],
         ['/', 'Home'],
       ])
       .filter((value) => router.isActive(value[0]))

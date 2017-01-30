@@ -16,7 +16,9 @@ const AppRoute = (
     <Route path="pl" component={ProblemList} />
     <Route path="pl/l" component={ProblemList} />
     <Route path="pl/r" component={ProblemList} />
-    <Route path="p/:pid" component={Problem} />
+    <Route path="p">
+      <Route path=":pid" component={Problem} />
+    </Route>
   </Route>
 );
 

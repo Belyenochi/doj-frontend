@@ -1,6 +1,21 @@
 import React, { Component, PropTypes } from 'react';
 import Title from 'react-title-component';
 
+import MarkdownElement from '../Components/MarkdownElement';
+
+const data = {
+  1000: `
+# 1000: A+B Problem
+## Description
+Calculate a+b
+## Input
+Two integer $a, b$ $(0 \\leq a, b \\leq 10)$
+  `,
+  1001: `
+# 1001: 鸡兔同笼
+  `,
+};
+
 class Problem extends Component {
   render() {
     const {
@@ -9,8 +24,8 @@ class Problem extends Component {
 
     return (
       <div>
-        <Title render={(prev) => `Problem · ${prev}`} />
-        {pid}
+        <Title render={(prev) => `Problem ${pid} · ${prev}`} />
+        <MarkdownElement text={data[pid]} />
       </div>
     );
   }

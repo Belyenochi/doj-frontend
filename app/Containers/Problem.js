@@ -7,12 +7,24 @@ const data = {
   1000: `
 # 1000: A+B Problem
 ## Description
-Calculate a+b
+Calculate \`$a+b$\`
 ## Input
-Two integer $a, b$ $(0 \\leq a, b \\leq 10)$
+Two integer \`$a, b$\` \`$(0 \\leq a, b \\leq 10)$\`
+## Code
+\`\`\` cpp
+int main() {
+  int a = 1 + 2;
+  return 0;
+}
+\`\`\`
   `,
   1001: `
 # 1001: 鸡兔同笼
+## Code
+\`\`\` math
+a = b ^ 2  
+c = \\sum_{i=1}^{n} a_i
+\`\`\`
   `,
 };
 

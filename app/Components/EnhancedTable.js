@@ -82,7 +82,7 @@ class EnhancedTable extends Component {
     sortReverse: false,
   };
 
-  handleTouchTap = (index) => {
+  handleClick = (index) => {
     const {
       sortByIndex,
       sortReverse,
@@ -186,7 +186,7 @@ class EnhancedTable extends Component {
                 <IconButton
                   style={styles.iconButton}
                   iconStyle={styles.iconFont}
-                  onTouchTap={() => this.handleTouchTap(index)}
+                  onClick={() => this.handleClick(index)}
                 >
                   {
                     sortByIndex !== index ? <IconSortNone /> :

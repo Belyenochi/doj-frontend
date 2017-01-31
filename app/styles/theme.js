@@ -43,4 +43,9 @@ export default {
   tableRowColumn: {
     height: 36,
   },
+  tabs: {
+    backgroundColor: grey200,
+    textColor: fade(fullBlack, 0.3),
+    selectedTextColor: fullBlack,
+  },
 };

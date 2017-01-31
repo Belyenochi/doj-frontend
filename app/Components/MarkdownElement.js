@@ -25,11 +25,11 @@ function getMarkdown() {
 
   // inline math
   markdown.renderer.rules.code_inline = function (tokens, idx) {
-    let code = tokens[idx].content;
+    const content = (tokens[idx].content || '').trim();
+    const code = content.split(/^\$(.*)\$$/)[1];
 
     // inline math
-    if (code.startsWith('$') && code.endsWith('$')) {
-      code = code.substr(1, code.length - 2);
+    if (code) {
       try {
         return katex.renderToString(code);
       } catch (err) {
@@ -47,13 +47,14 @@ function getMarkdown() {
     const map = markdown.map ? `data-source-line="${token.map[0] + 1}"` : '';
 
     // unknown programming language
-    return `<pre ${map} class="hljs"><code>${hljs.highlightAuto(code).value}</code></pre>`;
+    return `<pre ${map}><code class="hljs">${hljs.highlightAuto(code).value}</code></pre>`;
   };
 
   // render math block
   const render_math_block = function (code, map) {
+    const lines = (code || '').split(/(?:\n\s*){2,}/);
     // consecutive new lines means a new formula
-    const tex = _.reduce(code.split(/(?:\n\s*){2,}/), function (result, line) {
+    const tex = _.reduce(lines, function (result, line) {
       try {
         result += katex.renderToString(line.trim(), { displayMode: true });
       } catch (err) {
@@ -61,14 +62,15 @@ function getMarkdown() {
       }
       return result;
     }, '');
-    return `<div${map}>${tex}</div>`;
+
+    return `<div ${map}>${tex}</div>`;
   };
 
   // fence block
   markdown.renderer.rules.fence = function (tokens, idx) {
     const token = tokens[idx];
     const code = token.content.trim();
-    const map = markdown.map ? ` data-source-line="${token.map[0] + 1}"` : '';
+    const map = markdown.map ? `data-source-line="${token.map[0] + 1}"` : '';
     const lang = token.info ? token.info.trim().split(/\s+/g)[0] : '' ;
 
     // math
@@ -77,10 +79,10 @@ function getMarkdown() {
     }
     // programming language
     if (lang.length > 0) {
-      return `<pre ${map} class="hljs"><code>${hljs.highlight(lang, code, true).value}</code></pre>`;
+      return `<pre ${map}><code class="hljs">${hljs.highlight(lang, code, true).value}</code></pre>`;
     }
     // unknown programming language
-    return `<pre ${map} class="hljs"><code>${hljs.highlightAuto(code).value}</code></pre>`;
+    return `<pre ${map}><code class="hljs">${hljs.highlightAuto(code).value}</code></pre>`;
   };
 
   return markdown;

@@ -128,9 +128,9 @@ class Problem extends Component {
     });
   };
 
-  handleCodeChange = (event) => {
+  handleCodeChange = (event, value) => {
     this.setState({
-      code: event.target.value,
+      code: value,
     });
   };
 

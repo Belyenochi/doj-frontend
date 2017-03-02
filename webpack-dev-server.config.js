@@ -3,11 +3,23 @@ const path = require('path');
 
 const config = {
   // Entry point to the project
-  entry: [
-    'webpack/hot/dev-server',
-    'babel-polyfill',
-    path.resolve(__dirname, 'app/App.dev.js'),
-  ],
+  entry: {
+    'polyfill': './app/polyfill.js',
+    'vendor': './app/vendor.js',
+    'main': './app/App.dev.js',
+  },
+
+  // Output file config
+  output: {
+    path: './www', // Path of output file
+    filename: 'js/[name].bundle.js',
+    sourceMapFilename: 'js/[name].map',
+    chunkFilename: 'js/[id].chunk.js',
+  },
+
+  // output: {
+  //   filename: 'js/bundle.js', // Name of output file
+  // },
 
   // Configuration for dev server
   devServer: {
@@ -16,7 +28,6 @@ const config = {
     port: 4000,
     hot: true,
     inline: true,
-    filename: 'bundle.js', // Name of output file
   },
 
   plugins: [
@@ -24,6 +35,10 @@ const config = {
     new webpack.HotModuleReplacementPlugin(),
     // Allows error warninggs but does not stop compiling. Will remove when eslint is added
     new webpack.NoErrorsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['main', 'vendor', 'polyfill'],
+      minChunks: Infinity,
+    }),
   ],
 
   module: {
@@ -46,6 +61,10 @@ const config = {
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.scss$/,
+        loader: 'style-loader!css-loader!sass-loader',
       },
       {
         test: /\.(ttf|eot|svg|woff2?)(\?v=.+?)?$/,

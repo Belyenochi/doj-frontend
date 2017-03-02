@@ -1,24 +1,32 @@
 const webpack = require('webpack');
 const path = require('path');
-const buildPath = path.resolve(__dirname, 'build');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const buildPath = path.resolve(__dirname, 'build');
 
 const config = {
   // Entry point to the project
-  entry: [
-    'babel-polyfill',
-    path.resolve(__dirname, 'app/App.js'),
-  ],
+  entry: {
+    'polyfill': './app/polyfill.js',
+    'vendor': './app/vendor.js',
+    'main': './app/App.dev.js',
+  },
 
   // Output file config
   output: {
-    path: buildPath, // Path of output file
-    filename: 'bundle.js', // Name of output file
+    path: './build', // Path of output file
+    filename: 'js/[name].bundle.js',
+    sourceMapFilename: 'js/[name].map',
+    chunkFilename: 'js/[id].chunk.js',
   },
 
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['main', 'vendor', 'polyfill'],
+      minChunks: Infinity,
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
@@ -60,6 +68,10 @@ const config = {
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.scss$/,
+        loader: 'style-loader!css-loader!sass-loader',
       },
       {
         test: /\.(ttf|eot|svg|woff2?)(\?v=.+?)?$/,

@@ -1,54 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import Title from 'react-title-component';
+import MarkdownElement from 'react-markdown-plus';
 
+import fetch from 'isomorphic-fetch';
 import _ from 'lodash';
 
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import Snackbar from 'material-ui/Snackbar';
-import { Tabs, Tab } from 'material-ui/Tabs';
+import Tab from 'material-ui/Tabs/Tab';
+import Tabs from 'material-ui/Tabs/Tabs';
 import TextField from 'material-ui/TextField'
-
-import MarkdownElement from '../Components/MarkdownElement';
-
-function getData(pid) {
-  const data = {
-    1000: {
-      title: 'A+B Problem',
-      tlpt: 1,
-      mlpt: 256,
-      content: `
-## Description
-Calculate \`$a+b$\`
-## Input
-Two integer \`$a, b$\` \`$(0 \\leq a, b \\leq 10)$\`
-## Code
-\`\`\` cpp
-int main() {
-  int a = 1 + 2;
-  return 0;
-}
-\`\`\`
-      `,
-    },
-    1001: {
-      title: '鸡兔同笼',
-      tlpt: 1,
-      mlpt: 256,
-      content: `
-## Code
-\`\`\` math
-a = b ^ 2
-
-c = \\sum_{i=1}^{n} a_i
-\`\`\`
-      `,
-    },
-  };
-
-  return data[pid];
-}
+import Icon1 from 'material-ui/svg-icons/communication/live-help';
+import Icon2 from 'material-ui/svg-icons/action/code';
+import Icon3 from 'material-ui/svg-icons/av/equalizer';
 
 function getLangs() {
   const langs = {
@@ -56,12 +22,12 @@ function getLangs() {
     'g++03': 'GNU G++03 5.1.0',
     'g++11': 'GNU G++11 5.1.0',
     'g++14': 'GNU G++14 6.2.0',
-    'vc++': 'Microsoft Visual C++ 2010',
-    'c#': 'C# Mono 3.12.1.0',
-    'c#.net': 'MS C# .NET 4.0.30319',
     'java8': 'Java 1.8.0_112',
     'python2': 'Python 2.7.10',
     'python3': 'Python 3.5.2',
+    'vc++': 'Microsoft Visual C++ 2010',
+    'c#': 'C# Mono 3.12.1.0',
+    'c#.net': 'MS C# .NET 4.0.30319',
     'pascal': 'Free Pascal 2.6.4',
     'delphi': 'Delphi 7',
     'haskell': 'Haskell GHC 7.8.3',
@@ -120,6 +86,7 @@ class Problem extends Component {
     code: '',
     lang: 'g++03',
     open: false,
+    data: '',
   };
 
   handleLangChange = (event, index, value) => {
@@ -153,6 +120,24 @@ class Problem extends Component {
     });
   };
 
+  getData(pid) {
+    fetch(`http://127.0.0.1:8000/api/p/${pid}`)
+      .then(res => res.json())
+      .then(json => {
+        this.setState({
+          data: json,
+        });
+      });
+  }
+
+  componentDidMount() {
+    const {
+      pid,
+    } = this.props.params;
+
+    this.getData(pid);
+  }
+
   render() {
     const {
       pid,
@@ -162,11 +147,10 @@ class Problem extends Component {
       code,
       lang,
       open,
+      data,
     } = this.state;
 
     const styles = getStyles(this.props, this.context);
-
-    const data = getData(pid);
 
     return (
       <div style={styles.root}>
@@ -177,10 +161,10 @@ class Problem extends Component {
           <div>{`memory limit per test: ${data.mlpt} megabytes`}</div>
         </div>
         <Tabs>
-          <Tab label="content">
+          <Tab icon={<Icon1 />}>
             <MarkdownElement text={data.content} />
           </Tab>
-          <Tab label="submit">
+          <Tab icon={<Icon2 />}>
             <div style={{
               display: 'flex',
               justifyContent: 'center',
@@ -224,7 +208,7 @@ class Problem extends Component {
               />
             </div>
           </Tab>
-          <Tab label="status">
+          <Tab icon={<Icon3 />}>
             TODO.
           </Tab>
         </Tabs>

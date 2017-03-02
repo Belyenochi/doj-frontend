@@ -29,10 +29,10 @@ const AppRouter = (
   >
     {AppRoute}
   </Router>
-)
+);
 
 // Element created by React
-let app = (
+const app = (
   <Provider store={store}>
     <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
       {AppRouter}
@@ -41,7 +41,7 @@ let app = (
 );
 
 // Element from HTML
-let rootElement = document.getElementById('app');
+const rootElement = document.getElementById('app');
 
 // Render the main app react component into the app div.
 // For more details see: https://facebook.github.io/react/docs/top-level-api.html#react.render

@@ -6,9 +6,10 @@ import Subheader from 'material-ui/Subheader';
 import { List, ListItem, makeSelectable } from 'material-ui/List';
 import IconHome from 'material-ui/svg-icons/action/home';
 import IconList from 'material-ui/svg-icons/editor/format-list-numbered';
-import Filter1 from 'material-ui/svg-icons/image/filter-1';
-import Filter2 from 'material-ui/svg-icons/image/filter-2';
-import Filter3 from 'material-ui/svg-icons/image/filter-3';
+import IconFilter1 from 'material-ui/svg-icons/image/filter-1';
+import IconFilter2 from 'material-ui/svg-icons/image/filter-2';
+import IconFilter3 from 'material-ui/svg-icons/image/filter-3';
+import IconLogin from 'material-ui/svg-icons/action/perm-identity';
 
 const SelectableList = makeSelectable(List);
 
@@ -58,23 +59,34 @@ class Sidebar extends Component {
       ...other
     } = this.props;
 
+    const {
+      router
+    } = this.context;
+
     const styles = getStyles(this.props, this.context);
 
-    const router = this.context.router;
+    const UserInfo = (
+      <ListItem
+        leftIcon={<IconLogin />}
+        primaryText="Sign in"
+        value="/auth"
+        key="auth"
+      />
+    );
 
     const nestedItems = [
       <ListItem
-        leftIcon={<Filter1 />}
+        leftIcon={<IconFilter1 />}
         primaryText="All Problem"
         value="/pl"
       />,
       <ListItem
-        leftIcon={<Filter2 />}
+        leftIcon={<IconFilter2 />}
         primaryText="Local Problem"
         value="/pl/l"
       />,
       <ListItem
-        leftIcon={<Filter3 />}
+        leftIcon={<IconFilter3 />}
         primaryText="Remote Problem"
         value="/pl/r"
       />,
@@ -100,6 +112,7 @@ class Sidebar extends Component {
           value={pathname}
         >
           <Subheader>Person</Subheader>
+          {UserInfo}
           <Subheader>Common</Subheader>
           <ListItem
             leftIcon={<IconHome />}
@@ -107,10 +120,10 @@ class Sidebar extends Component {
             value="/"
           />
           <ListItem
-            nestedItems={nestedItems}
             leftIcon={<IconList />}
             primaryText="Problem"
             primaryTogglesNestedList={true}
+            nestedItems={nestedItems}
           />
         </SelectableList>
       </Drawer>

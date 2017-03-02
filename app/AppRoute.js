@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import Layout from './Containers/Layout';
+import Auth from './Containers/Auth';
 import Home from './Containers/Home';
 import Problem from './Containers/Problem';
 import ProblemList from './Containers/ProblemList';
@@ -13,6 +14,7 @@ import ProblemList from './Containers/ProblemList';
 const AppRoute = (
   <Route path="/" component={Layout}>
     <IndexRoute component={Home} />
+    <Route path="auth" component={Auth} />
     <Route path="pl" component={ProblemList}>
       <Route path="l" component={ProblemList} />
       <Route path="r" component={ProblemList} />

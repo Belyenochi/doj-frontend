@@ -41,6 +41,7 @@ class Signin extends Component {
     return (
       <div style={styles.root}>
         <Title render={(prev) => `Authenticate · ${prev}`} />
+        <br />
         <TextField
           id="account"
           floatingLabelText="Account"
@@ -54,6 +55,7 @@ class Signin extends Component {
           value={password}
           onChange={this.handleChange('password')}
         />
+        <br />
         <br />
         <RaisedButton
           label="Submit"

@@ -9,7 +9,7 @@ const config = {
   entry: {
     'polyfill': './app/polyfill.js',
     'vendor': './app/vendor.js',
-    'main': './app/App.dev.js',
+    'main': './app/App.js',
   },
 
   // Output file config
@@ -67,11 +67,11 @@ const config = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        loaders: ['style-loader', 'css-loader'],
       },
       {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader',
+        loaders: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(ttf|eot|svg|woff2?)(\?v=.+?)?$/,

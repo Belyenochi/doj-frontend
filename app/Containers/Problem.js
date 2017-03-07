@@ -72,6 +72,10 @@ function getStyles(props, context) {
     button: {
       margin: 20,
     },
+    content: {
+      paddingLeft: 5,
+      paddingRight: 5,
+    },
   };
 
   return styles;
@@ -121,7 +125,7 @@ class Problem extends Component {
   };
 
   getData(pid) {
-    fetch(`http://127.0.0.1:8000/api/p/${pid}`)
+    fetch(`http://127.0.0.1:8000/api/problem/${pid}`)
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -156,13 +160,13 @@ class Problem extends Component {
       <div style={styles.root}>
         <Title render={(prev) => `Problem ${pid} · ${prev}`} />
         <div style={styles.headline}>
-          <h1 style={styles.title}>{pid + ': ' + data.title}</h1>
+          <h1 style={styles.title}>{`${data.voj}-${data.vid}: ${data.title}`}</h1>
           <div>{`time limit per test: ${data.tlpt} seconds`}</div>
           <div>{`memory limit per test: ${data.mlpt} megabytes`}</div>
         </div>
         <Tabs>
           <Tab icon={<Icon1 />}>
-            <MarkdownElement text={data.content} />
+            <MarkdownElement text={data.content} style={styles.content}/>
           </Tab>
           <Tab icon={<Icon2 />}>
             <div style={{

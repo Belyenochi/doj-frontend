@@ -72,7 +72,7 @@ const cols = [
 
 const rows = [
   {
-    id: 1000,
+    id: 1,
     title: 'A + B Problem',
     ac: 560,
     sub: 814,
@@ -80,7 +80,7 @@ const rows = [
     vid: 1000,
   },
   {
-    id: 1001,
+    id: 2,
     title: '鸡兔同笼',
     ac: 446,
     sub: 1021,
@@ -88,7 +88,7 @@ const rows = [
     vid: 1001,
   },
   {
-    id: 1002,
+    id: 3,
     title: '斐波那契数列',
     ac: 962,
     sub: 962,
@@ -96,7 +96,7 @@ const rows = [
     vid: 1002,
   },
   {
-    id: 1003,
+    id: 4,
     title: '打印螺旋矩阵',
     ac: 127,
     sub: 385,
@@ -104,7 +104,7 @@ const rows = [
     vid: 1003,
   },
   {
-    id: 1004,
+    id: 5,
     title: 'No Brainer',
     ac: 177,
     sub: 229,
